@@ -15,7 +15,7 @@ class CreateOfficersTable extends Migration
     {
         Schema::create('officers', function (Blueprint $table) {
             $table->id();
-            $table->smallInteger('military_rank');
+            $table->smallInteger('military_rank')->foreignId('id')->constrained('military_ranks');
             $table->string('surname');
             $table->string('name');
             $table->string('patronymic');

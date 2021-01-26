@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateForceManagmentsTable extends Migration
+class CreateMilitaryRanksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class CreateForceManagmentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('force_managments', function (Blueprint $table) { //may be rename on Departments?
+        Schema::create('military_ranks', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->foreignId('officer_id')->constrained('officers')->onUpdate('cascade');
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ class CreateForceManagmentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('force_managments');
+        Schema::dropIfExists('military_ranks');
     }
 }
