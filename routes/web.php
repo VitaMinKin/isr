@@ -13,5 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 use App\Http\Controllers\StatusScreenController;
+use App\Http\Controllers\OfficerController;
+
 Route::get('/', [StatusScreenController::class, 'show']);
+Route::resource('officers', OfficerController::class);
 
