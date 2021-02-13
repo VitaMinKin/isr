@@ -42,10 +42,10 @@ class OfficerSeeder extends Seeder
      */
     public function run()
     {
-        array_map(function($position) {
+        /*array_map(function($position) {
             DB::table('officers')->insert([
                 'military_position' => $position
             ]);
-        }, self::$positions);
+        }, self::$positions);*/
     }
 }

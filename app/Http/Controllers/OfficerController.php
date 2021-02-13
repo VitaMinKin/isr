@@ -26,7 +26,9 @@ class OfficerController extends Controller
      */
     public function create()
     {
-        return view("officers.create");
+        $ranks = \App\Models\MilitaryRank::all();
+
+        return view("officers.create", ["ranks" =>$ranks]);
     }
 
     /**
@@ -37,7 +39,9 @@ class OfficerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $officer = new \App\Models\Officer(($request->officer));
+        $officer->save();
+        return redirect()->route('officers.index');
     }
 
     /**

@@ -1,5 +1,7 @@
 @extends('layout')
 
+@extends('header')
+
 @section('content')
  <div class='container-lg'>
  
@@ -33,3 +35,5 @@
 
 
 @endsection
+
+@extends('footer')
