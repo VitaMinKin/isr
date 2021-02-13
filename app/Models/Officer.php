@@ -19,11 +19,11 @@ class Officer extends Model
     
     public function militaryRanks()
     {
-        $this->belongsTo('\App\Models\Ranks', 'military_rank');
+        return $this->belongsTo('\App\Models\MilitaryRank', 'military_rank');
     }
 
     public function forceManagments()
     {
-        $this->hasMany("\App\Models\ForceManagment");
+        return $this->hasMany("\App\Models\ForceManagment");
     }
 }

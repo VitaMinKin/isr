@@ -14,8 +14,10 @@ class OfficerController extends Controller
      */
     public function index()
     {
-        $officers = \App\Models\Officer::all();
-
+        $officers = \App\Models\Officer::with(["militaryRanks" =>function($query) {
+            $query->select('id', 'name');
+        }])->get();
+        
         return view("officers.index", ['officers' => $officers]);
     }
 
@@ -27,7 +29,6 @@ class OfficerController extends Controller
     public function create()
     {
         $ranks = \App\Models\MilitaryRank::all();
-
         return view("officers.create", ["ranks" =>$ranks]);
     }
 

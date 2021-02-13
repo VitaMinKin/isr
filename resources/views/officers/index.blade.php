@@ -4,9 +4,10 @@
 
 @section('content')
  <div class='container-lg'>
- 
+    
     <h2 class="text-center text-uppercase mt-3"> Ответственные за обеспечение безопасности информации <br/> на объектах информатизации </h1>
-    <table class="table table-bordered table-striped table-responsive-sm">
+    
+    <table class="table table-bordered table-striped table-responsive-sm" cols="5">
     <thead class="table-dark">
         <tr class="text-center">
         <th scope="col" class="col-1">№ п/п</th>
@@ -17,20 +18,32 @@
         </tr>
     </thead>
     <tbody class="table-hover cursor-pointer">
-        @foreach($officers as $officer)
+        @if (count($officers) < 1)
             <tr>
-            <th scope="row">{{ $loop->iteration }}</th>
-            <td>{{ $officer->military_position }}</td>
-            <td>{{ $officer->military_rank }}</td>
-            <td>{{ $officer->surname }}</td>
-            <td><p>png</p></td>
+                <td colspan="5">
+                    <p class="text-center font-italic mt-15"> Нет данных для отображения </p>
+                </td>
             </tr>
-        @endforeach
+
+        @else
+       
+            @foreach($officers as $officer)
+                <tr>
+                    <th scope="row">{{ $loop->iteration }}</th>
+                    <td>{{ $officer->military_position }}</td>
+                    <td>{{ $officer->militaryRanks()->first()->name }}</td>
+                    <td>{{ $officer->surname }}</td>
+                    <td><p>png</p></td>
+                </tr>
+            @endforeach
+        @endif
     </tbody>
     </table>
     <div class="row d-flex justify-content-end m-0">
         <a class="btn btn-primary" href="/officers/create" role="button">Добавить</a>
     </div>
+
+    
 </div>
 
 
