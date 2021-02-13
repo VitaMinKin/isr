@@ -14,7 +14,9 @@ class OfficerController extends Controller
      */
     public function index()
     {
-        return view("officers.index");
+        $officers = \App\Models\Officer::all();
+
+        return view("officers.index", ['officers' => $officers]);
     }
 
     /**
@@ -24,7 +26,7 @@ class OfficerController extends Controller
      */
     public function create()
     {
-        //
+        return view("officers.create");
     }
 
     /**

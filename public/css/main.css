@@ -10,3 +10,7 @@
 .scrColor {
     background-color: #5d86ae;
 }
+
+.cursor-pointer {
+    cursor: pointer;
+}
