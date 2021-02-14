@@ -5,10 +5,10 @@ setup:
 	composer install
 	cp -n .env.example .env|| true
 	php artisan key:gen --ansi
-	touch database/database.sqlite
 	php artisan migrate
 	php artisan db:seed
 	npm install
+	echo "please create DB use psql"
 
 watch:
 	npm run watch
@@ -29,7 +29,7 @@ deploy:
 	git push heroku
 
 lint:
-	phpcs --standard=PSR12 ./app
+	vendor/bin/phpcs --standard=PSR12 ./app
 
 lint-fix:
 	composer phpcbf

@@ -1,10 +1,10 @@
 {
-    "name": "laravel/laravel",
+    "name": "vm/isr",
     "type": "project",
-    "description": "The Laravel Framework.",
+    "description": "ISR - my new project for military information security center",
     "keywords": [
-        "framework",
-        "laravel"
+        "isr",
+        "isc"
     ],
     "license": "MIT",
     "require": {
@@ -23,7 +23,8 @@
         "laravel/sail": "^1.0.1",
         "mockery/mockery": "^1.4.2",
         "nunomaduro/collision": "^5.0",
-        "phpunit/phpunit": "^9.3.3"
+        "phpunit/phpunit": "^9.3.3",
+        "squizlabs/php_codesniffer": "*"
     },
     "config": {
         "optimize-autoloader": true,
@@ -59,6 +60,16 @@
         ],
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
+        ],
+        "code-sniffer": [
+            "./vendor/bin/phpcs --config-set default_standard phpcs.xml",
+            "./vendor/bin/phpcs --config-set colors 1"
+        ],
+        "post-install-cmd": [
+            "@code-sniffer"
+        ],
+        "post-update-cmd": [
+            "@code-sniffer"
         ]
     }
 }
