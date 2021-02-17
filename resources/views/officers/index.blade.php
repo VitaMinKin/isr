@@ -30,7 +30,7 @@
             @foreach($officers as $officer)
                 <tr>
                     <th scope="row">{{ $loop->iteration }}</th>
-                    <td>{{ $officer->military_position }}</td>
+                    <td><a href="/officers/{{ $officer->id }}"> {{ $officer->military_position }} </a></td>
                     <td>{{ $officer->militaryRanks()->first()->name }}</td>
                     <td>{{ $officer->surname }}</td>
                     <td><p>png</p></td>
