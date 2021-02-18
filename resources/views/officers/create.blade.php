@@ -7,7 +7,43 @@
 
             <h1 class="text-center">Должностное лицо отдела ОБИ</h1>
 
-
+            {{ Form::model($officer, ['url' => route('officers.store')]) }}
+                <div class="row">
+                    <div class="col my-3">
+                        {{ Form::label('military_rank', 'Воинское звание') }}
+                        {{ Form::select('military_rank', $ranks->toArray())}}
+                    </div>
+                </div>   
+                <div class="row">
+                    <div class="col-md-4">
+                        {{ Form::label('surname', 'Фамилия')}}
+                        {{ Form::text('surname')}}
+                    </div>
+                    <div class="col-md-4">
+                        {{ Form::label('name', 'Имя')}}
+                        {{ Form::text('name')}}
+                    </div>
+                    <div class="col-md-4">
+                        {{ Form::label('patronymic', 'Отчество')}}
+                        {{ Form::text('patronymic')}}
+                    </div>
+                </div>        
+                <div class="row">
+                    <div class="col-12">
+                        {{ Form::label('military_position', 'Должность')}}
+                        {{ Form::text('military_position')}}
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col d-flex justify-content-end">
+                        {{ Form::submit('Добавить') }}
+                    </div>
+                </div>       
+            
+                
+            
+            
             <form method="POST" action="/officers">
                 @csrf
                 

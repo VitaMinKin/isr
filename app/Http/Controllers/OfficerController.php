@@ -14,7 +14,7 @@ class OfficerController extends Controller
      */
     public function index()
     {
-        $officers = \App\Models\Officer::all();
+        $officers = Officer::paginate();
         
         return view("officers.index", compact('officers'));
     }
@@ -27,7 +27,8 @@ class OfficerController extends Controller
     public function create()
     {
         $ranks = \App\Models\MilitaryRank::all();
-        return view("officers.create", ["ranks" =>$ranks]);
+        $officer = new Officer();
+        return view("officers.create", ["ranks" => $ranks, "officer" => $officer]);
     }
 
     /**
@@ -38,7 +39,7 @@ class OfficerController extends Controller
      */
     public function store(Request $request)
     {
-        $officer = new \App\Models\Officer(($request->officer));
+        $officer = new Officer(($request->officer));
         $officer->save();
         return redirect()->route('officers.index');
     }

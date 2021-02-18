@@ -34,6 +34,7 @@
                     <td><p>png</p></td>
                 </tr>
             @endforeach
+            {{ $officers->links() }}
         @endif
     </tbody>
     </table>
