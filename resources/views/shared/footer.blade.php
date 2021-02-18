@@ -1,5 +1,3 @@
-@section('footer')
-<!-- <div class="d-flex flex-column min-vh-100"> -->
     <div class="wrapper flex-grow-1"></div>
     <footer class='border-top py-3 mt-5'>
         <div class='container-fluid'>
@@ -15,5 +13,3 @@
             </div>
         </div>
     </footer>
-<!-- </div> -->
-@endsection

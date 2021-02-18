@@ -1,11 +1,9 @@
-@extends('layout')
-
-@extends('header')
+@extends('layouts.app')
 
 @section('content')
  <div class='container-lg'>
     
-    <h2 class="text-center text-uppercase mt-3"> Ответственные за обеспечение безопасности информации <br/> на объектах информатизации </h1>
+    <h2 class="text-center text-uppercase mt-3"> Ответственные за обеспечение безопасности информации <br/> на объектах информатизации </h2>
     
     <table class="table table-bordered table-striped table-responsive-sm" cols="5">
     <thead class="table-dark">
@@ -48,5 +46,3 @@
 
 
 @endsection
-
-@extends('footer')
