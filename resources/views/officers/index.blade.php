@@ -16,7 +16,7 @@
         </tr>
     </thead>
     <tbody class="table-hover cursor-pointer">
-        @if (count($officers) < 1)
+        @if ($officers->isEmpty())
             <tr>
                 <td colspan="5">
                     <p class="text-center font-italic mt-15"> Нет данных для отображения </p>

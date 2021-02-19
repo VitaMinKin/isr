@@ -10,90 +10,42 @@
             {{ Form::model($officer, ['url' => route('officers.store')]) }}
                 <div class="row">
                     <div class="col my-3">
-                        {{ Form::label('military_rank', 'Воинское звание') }}
-                        {{ Form::select('military_rank', $ranks->toArray())}}
+                        {{ Form::label('military_rank', 'Воинское звание', ['class' => 'form-label']) }}
+                        {{ Form::select('military_rank', $ranks->toArray()) }}
+                        
                     </div>
                 </div>   
                 <div class="row">
                     <div class="col-md-4">
-                        {{ Form::label('surname', 'Фамилия')}}
-                        {{ Form::text('surname')}}
+                        {{ Form::label('surname', 'Фамилия', ['class' => 'form-label']) }}
+                        {{ Form::text('surname', '', ['class' => 'form-control']) }}
                     </div>
                     <div class="col-md-4">
-                        {{ Form::label('name', 'Имя')}}
-                        {{ Form::text('name')}}
+                        {{ Form::label('name', 'Имя', ['class' => 'form-label']) }}
+                        {{ Form::text('name', '', ['class' => 'form-control']) }}
                     </div>
                     <div class="col-md-4">
                         {{ Form::label('patronymic', 'Отчество')}}
-                        {{ Form::text('patronymic')}}
+                        {{ Form::text('patronymic', '', ['class' => 'form-control']) }}
                     </div>
                 </div>        
                 <div class="row">
                     <div class="col-12">
-                        {{ Form::label('military_position', 'Должность')}}
-                        {{ Form::text('military_position')}}
+                        {{ Form::label('military_position', 'Должность', ['class' => 'form-label']) }}
+                        {{ Form::text('military_position', '', ['class' => 'form-control']) }}
                     </div>
                 </div>
-                
-                <div class="row">
-                    <div class="col d-flex justify-content-end">
-                        {{ Form::submit('Добавить') }}
-                    </div>
-                </div>       
-            
-                
-            
-            
-            <form method="POST" action="/officers">
-                @csrf
-                
-                <div class="row">
-                    <div class="col my-3">
-                        <label for="inputRank" class="form-label">Воинское звание</label>
-                        <select id="inputRank" class="form-select" name="officer[military_rank]">
-                        <option selected>Выберите...</option>
-                        @foreach ($ranks as $rank)
-                            <option value="{{ $rank->id }}">{{ $rank->name }}</option>
-                        @endforeach
-                        </select>
-                    </div>
-                </div>
-                
-                <div class="row">
-                    <div class="col-md-4">
-                        <label for="inputSurname" class="form-label">Фамилия</label>
-                        <input type="text" class="form-control" id="inputSurname" name="officer[surname]">
-                    </div>
-                    <div class="col-md-4">
-                        <label for="inputName" class="form-label">Имя</label>
-                        <input type="text" class="form-control" id="inputName" name="officer[name]">
-                    </div>
-                    <div class="col-md-4">
-                        <label for="inputPatronymic" class="form-label">Отчество</label>
-                        <input type="text" class="form-control" id="inputPatronymic" name="officer[patronymic]">
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-12">
-                        <label for="inputPosition" class="form-label">Должность</label>
-                        <input type="text" class="form-control" id="inputPosition" placeholder="Офицер по ОБИ" name="officer[military_position]">
-                    </div>
-                </div>
-
-                
                 <div class = "row">
                     <div class="form-group col my-3">
-                        <label for="avatar" class="form-label">Фото</label>
-                        <input type="file" class="form-file" id="avatar">
+                        {{ Form::label('avatar', 'Фото', ['class' => 'form-label']) }}
+                        {{ Form::file('Выбрать', ['class' => 'form-file']) }}
                     </div>
                 </div>
-
                 <div class="row">
                     <div class="col d-flex justify-content-end">
-                        <button type="submit" class="btn btn-primary">Добавить</button>
+                        {{ Form::submit('Добавить', ['class' => 'btn btn-primary']) }}
                     </div>
-                </div>
+                </div>       
             </form>
         </div>
         

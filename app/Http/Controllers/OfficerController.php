@@ -26,7 +26,7 @@ class OfficerController extends Controller
      */
     public function create()
     {
-        $ranks = \App\Models\MilitaryRank::all();
+        $ranks = \App\Models\MilitaryRank::pluck('name', 'id');
         $officer = new Officer();
         return view("officers.create", ["ranks" => $ranks, "officer" => $officer]);
     }
