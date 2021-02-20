@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Officer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use \App\Http\Requests\StoreOfficerRequest;
 
 class OfficerController extends Controller
 {
@@ -31,55 +32,21 @@ class OfficerController extends Controller
         $officer = new Officer();
         return view("officers.create", compact('ranks', 'officer'));
     }
-
+    //@param  \Illuminate\Http\Request  $request
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\StoreOfficerRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreOfficerRequest $request)
     {
-        $ruls = [
-            'military_rank' => 'required',
-            'name' => 'required',
-            'surname' => 'required',
-            'patronymic' => 'required',
-            'military_position' => 'required'
-        ];
-
-        $messages = [//Technical debt: must use laravel localization
-            'required' => 'Поле :attribute обязательно для заполнения!'
-        ];
-
-        $attributes = [
-            'military_position' => 'Должность',
-            'name' => 'Имя',
-            'surname' => 'Фамилия',
-            'patronymic' => 'Отчество'
-        ];
-
-        $validator = Validator::make(
-            $request->all(),
-            $ruls,
-            $messages,
-            $attributes
-        );
-
-        dump($validator->errors()->all());
-
-        if ($validator->fails()) {
-            foreach ($validator->errors()->all() as $error) {
-                flash($error)->error()->important();
-            }
-
-            return redirect()->route('officers.create')->withInput();
-        }
-        
+        $validated = $request->validated();
+       
         $officer = new Officer();
-        $officer->fill($request->all());
+        $officer->fill($validated);
         $officer->save();
-
+        //Technical debt: use laravel locale
         flash("Запись офицера по ОБИ успешно добавлена в базу данных")->success();
 
         return redirect()->route('officers.index');
@@ -104,7 +71,9 @@ class OfficerController extends Controller
      */
     public function edit(Officer $officer)
     {
-        //
+        $ranks = \App\Models\MilitaryRank::pluck('name', 'id');
+
+        return view('officers.edit', compact('officer', 'ranks'));
     }
 
     /**
@@ -114,9 +83,13 @@ class OfficerController extends Controller
      * @param  \App\Models\Officer  $officer
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Officer $officer)
+    public function update(StoreOfficerRequest $request, Officer $officer)
     {
-        //
+        $validated = $request->validated();
+
+        $officer->fill($validated);
+        $officer->save();
+        return redirect()->route('officers.index');
     }
 
     /**
