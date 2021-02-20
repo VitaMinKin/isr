@@ -17,6 +17,8 @@
         
         @include('shared.navbar')
 
+        @include('flash::message')
+        
         @yield('content')
 
         @include('shared.footer')

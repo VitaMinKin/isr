@@ -6,7 +6,7 @@
         <div class="col-9">
 
             <h1 class="text-center">Должностное лицо отдела ОБИ</h1>
-
+            
             {{ Form::model($officer, ['url' => route('officers.store')]) }}
                 <div class="row">
                     <div class="col my-3">
@@ -38,7 +38,7 @@
                 <div class = "row">
                     <div class="form-group col my-3">
                         {{ Form::label('avatar', 'Фото', ['class' => 'form-label']) }}
-                        {{ Form::file('Выбрать', ['class' => 'form-file']) }}
+                        {{ Form::file('avatar', ['class' => 'form-file']) }}
                     </div>
                 </div>
                 <div class="row">
