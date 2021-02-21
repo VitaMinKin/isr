@@ -47,7 +47,7 @@ class OfficerController extends Controller
         $officer->fill($validated);
         $officer->save();
         //Technical debt: use laravel locale
-        flash("Запись офицера по ОБИ успешно добавлена в базу данных")->success();
+        flash("Запись офицера '$officer->surname $officer->name $officer->patronymic' успешно добавлена в базу данных")->success();
 
         return redirect()->route('officers.index');
     }
@@ -89,6 +89,8 @@ class OfficerController extends Controller
 
         $officer->fill($validated);
         $officer->save();
+        //Technical debt: use laravel locale
+        flash("Данные на офицера '$officer->surname $officer->name $officer->patronymic' успешно сохранены!")->success();
         return redirect()->route('officers.index');
     }
 
@@ -100,6 +102,11 @@ class OfficerController extends Controller
      */
     public function destroy(Officer $officer)
     {
-        //
+        if ($officer) {
+            $officer->delete();
+        }
+        //Technical debt: use laravel locale
+        flash("Данные офицера '$officer->surname $officer->name $officer->patronymic' удалены!")->success();
+        return redirect()->route('officers.index');
     }
 }

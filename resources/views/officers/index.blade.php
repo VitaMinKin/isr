@@ -31,7 +31,10 @@
                     <td>{{ $officer->military_position }} </td>
                     <td>{{ $officer->militaryRanks()->first()->name }}</td>
                     <td><a href="/officers/{{ $officer->id }}">{{ $officer->surname }}</a></td>
-                    <td><a href='{{ url("/officers/$officer->id/edit") }}'>Изменить</a></td>
+                    <td>
+                        <a href='{{ url("/officers/$officer->id/edit") }}'>Изменить</a>
+                        <a href='{{ url("/officers/$officer->id/") }}' data-confirm="Вы уверены?" data-method="delete" rel="nofollow">Удалить</a>
+                    </td>
                 </tr>
             @endforeach
             {{ $officers->links() }}
