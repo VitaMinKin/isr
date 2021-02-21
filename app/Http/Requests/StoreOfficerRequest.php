@@ -28,7 +28,8 @@ class StoreOfficerRequest extends FormRequest
             'name' => 'required',
             'surname' => 'required',
             'patronymic' => 'required',
-            'military_position' => 'required'
+            'military_position' => 'required',
+            'avatar' => 'image|mimes:jpeg,png,jpg,bmp,gif,svg'
         ];
     }
 

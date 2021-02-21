@@ -7,7 +7,7 @@
 
             <h1 class="text-center">Должностное лицо отдела ОБИ</h1>
             
-            {{ Form::model($officer, ['url' => route('officers.store')]) }}
+            {{ Form::model($officer, ['url' => route('officers.store'), 'files' => true]) }}
                 @include('officers.form')
                 <div class="row">
                     <div class="col d-flex justify-content-end">

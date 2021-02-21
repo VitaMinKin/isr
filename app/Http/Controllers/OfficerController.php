@@ -6,6 +6,7 @@ use App\Models\Officer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use \App\Http\Requests\StoreOfficerRequest;
+use Illuminate\Support\Facades\Storage;
 
 class OfficerController extends Controller
 {
@@ -43,8 +44,11 @@ class OfficerController extends Controller
     {
         $validated = $request->validated();
        
+        $pathToAvatar = Storage::putFile('public/avatars', $request->file('avatar'), 'public');
+        
         $officer = new Officer();
         $officer->fill($validated);
+        $officer->avatar = $pathToAvatar;
         $officer->save();
         //Technical debt: use laravel locale
         flash("Запись офицера '$officer->surname $officer->name $officer->patronymic' успешно добавлена в базу данных")->success();
@@ -87,8 +91,13 @@ class OfficerController extends Controller
     {
         $validated = $request->validated();
 
+        $pathToAvatar = Storage::putFile('public/avatars', $request->file('avatar'), 'public');
+        Storage::delete($officer->avatar);
+
         $officer->fill($validated);
+        $officer->avatar = $pathToAvatar;
         $officer->save();
+
         //Technical debt: use laravel locale
         flash("Данные на офицера '$officer->surname $officer->name $officer->patronymic' успешно сохранены!")->success();
         return redirect()->route('officers.index');
@@ -103,6 +112,7 @@ class OfficerController extends Controller
     public function destroy(Officer $officer)
     {
         if ($officer) {
+            Storage::delete($officer->avatar);
             $officer->delete();
         }
         //Technical debt: use laravel locale

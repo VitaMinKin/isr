@@ -21,7 +21,6 @@ class CreateOfficersTable extends Migration
             $table->string('name');
             $table->string('patronymic');
             $table->string('military_position');
-            //фото - поля или ссылка на таблицу?
             $table->timestamps();
         });
     }

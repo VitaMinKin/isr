@@ -28,6 +28,6 @@
     <div class = "row">
         <div class="form-group col my-3">
             {{ Form::label('avatar', 'Фото', ['class' => 'form-label']) }}
-            {{ Form::file('avatar', ['class' => 'form-file']) }}
+            {{ Form::file('avatar', ['class' => 'form-file', 'accept' => 'image/jpeg,image/png,image/gif,image/jpg,image/bmp,image/svg']) }}
         </div>
     </div>
