@@ -16,8 +16,10 @@
   <body class="d-flex flex-column min-vh-100">
         
         @include('shared.navbar')
-
+      
+      <div class="container-fluid" style="height:50px">
         @include('flash::message')
+      </div>
         
         @yield('content')
 

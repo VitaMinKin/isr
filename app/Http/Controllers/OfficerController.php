@@ -91,11 +91,13 @@ class OfficerController extends Controller
     {
         $validated = $request->validated();
 
-        $pathToAvatar = Storage::putFile('public/avatars', $request->file('avatar'), 'public');
-        Storage::delete($officer->avatar);
+        if ($request->hasFile('avatar')) {
+            $pathToAvatar = Storage::putFile('public/avatars', $request->file('avatar'), 'public');
+            Storage::delete($officer->avatar);
+            $officer->avatar = $pathToAvatar;
+        }
 
         $officer->fill($validated);
-        $officer->avatar = $pathToAvatar;
         $officer->save();
 
         //Technical debt: use laravel locale
