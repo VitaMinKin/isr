@@ -43,12 +43,16 @@ class OfficerController extends Controller
     public function store(StoreOfficerRequest $request)
     {
         $validated = $request->validated();
-       
-        $pathToAvatar = Storage::putFile('public/avatars', $request->file('avatar'), 'public');
-        
+
         $officer = new Officer();
+
+        if ($request->hasFile('avatar')) {
+            $pathToAvatar = Storage::putFile('public/avatars', $request->file('avatar'), 'public');
+            $officer->avatar = $pathToAvatar;
+        }        
+        
         $officer->fill($validated);
-        $officer->avatar = $pathToAvatar;
+        
         $officer->save();
         //Technical debt: use laravel locale
         flash("Запись офицера '$officer->surname $officer->name $officer->patronymic' успешно добавлена в базу данных")->success();
