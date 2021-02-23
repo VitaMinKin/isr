@@ -1,4 +1,4 @@
-name: Laravel
+name: UnitTests
 
 on:
   push:
@@ -32,4 +32,4 @@ jobs:
       env:
         DB_CONNECTION: sqlite
         DB_DATABASE: database/database.sqlite
-      run: vendor/bin/phpunit
+      run: ./vendor/bin/phpunit --verbose --stderr --coverage-clover build/logs/clover.xml
