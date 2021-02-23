@@ -70,8 +70,8 @@ jobs:
       fail-fast: false
       matrix:
         operating_system: ['ubuntu-latest']
-        postgres: [11, 12]
-        php_versions: ['7.3', '7.4', '8.0']
+        postgres: [12]
+        php_versions: ['7.4']
         experimental: [false]
         include:
           - operating_system: ubuntu-latest
