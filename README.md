@@ -2,6 +2,8 @@
 
 ![CI](https://github.com/VitaMinKin/isr/workflows/CI/badge.svg?branch=master)
 
+[![UnitTests](https://github.com/VitaMinKin/isr/actions/workflows/laravel.yml/badge.svg)](https://github.com/VitaMinKin/isr/actions/workflows/laravel.yml)
+
 Development of a project to automate routine activities at work.
 
 > Development is carried out exclusively for charitable purposes, in free time from work - __at night and on weekends__ =)
