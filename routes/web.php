@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,4 +16,3 @@ use App\Http\Controllers\OfficerController;
 
 Route::get('/', [StatusScreenController::class, 'show']);
 Route::resource('officers', OfficerController::class);
-

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Officer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use \App\Http\Requests\StoreOfficerRequest;
+use App\Http\Requests\StoreOfficerRequest;
 use Illuminate\Support\Facades\Storage;
 
 class OfficerController extends Controller
@@ -18,7 +18,7 @@ class OfficerController extends Controller
     public function index()
     {
         $officers = Officer::paginate();
-        
+
         return view("officers.index", compact('officers'));
     }
 
@@ -38,6 +38,7 @@ class OfficerController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \App\Http\Requests\StoreOfficerRequest  $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(StoreOfficerRequest $request)
@@ -48,14 +49,16 @@ class OfficerController extends Controller
 
         if ($request->hasFile('avatar')) {
             $pathToAvatar = Storage::putFile('public/avatars', $request->file('avatar'), 'public');
+
             $officer->avatar = $pathToAvatar;
-        }        
-        
+        }
+
         $officer->fill($validated);
-        
+
         $officer->save();
         //Technical debt: use laravel locale
-        flash("Запись офицера '$officer->surname $officer->name $officer->patronymic' успешно добавлена в базу данных")->success();
+        flash("Запись офицера '$officer->surname $officer->name $officer->patronymic' успешно добавлена в базу данных")
+            ->success();
 
         return redirect()->route('officers.index');
     }
@@ -64,6 +67,7 @@ class OfficerController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Models\Officer  $officer
+     *
      * @return \Illuminate\Http\Response
      */
     public function show(Officer $officer)
@@ -75,6 +79,7 @@ class OfficerController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Officer  $officer
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit(Officer $officer)
@@ -89,6 +94,7 @@ class OfficerController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Officer  $officer
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(StoreOfficerRequest $request, Officer $officer)
@@ -105,7 +111,9 @@ class OfficerController extends Controller
         $officer->save();
 
         //Technical debt: use laravel locale
-        flash("Данные на офицера '$officer->surname $officer->name $officer->patronymic' успешно сохранены!")->success();
+        flash("Данные на офицера '$officer->surname $officer->name $officer->patronymic' успешно сохранены!")
+            ->success();
+
         return redirect()->route('officers.index');
     }
 
@@ -113,6 +121,7 @@ class OfficerController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Officer  $officer
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy(Officer $officer)

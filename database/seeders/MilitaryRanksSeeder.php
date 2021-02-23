@@ -16,8 +16,8 @@ class MilitaryRanksSeeder extends Seeder
     {
         $rawRanks = \file_get_contents(__DIR__ . "/../../app/src/fixtures/ranks.txt");
         $ranks = explode("\n", \trim($rawRanks));
-        
-        array_map(function($rank) {
+
+        array_map(function ($rank) {
             DB::table('military_ranks')->insert([
                 'name' => trim($rank)
             ]);

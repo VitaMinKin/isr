@@ -13,6 +13,4 @@ class MilitaryRank extends Model
     {
         $this->hasMany("\App\Models\Officer", "military_rank");
     }
-
-    
 }

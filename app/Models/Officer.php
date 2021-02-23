@@ -16,7 +16,7 @@ class Officer extends Model
         'patronymic',
         'military_position'
     ];
-    
+
     public function militaryRanks()
     {
         return $this->belongsTo('\App\Models\MilitaryRank', 'military_rank');

@@ -13,7 +13,8 @@ class CreateForceManagmentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('force_managments', function (Blueprint $table) { //may be rename on Departments?
+        Schema::create('force_managments', function (Blueprint $table) {
+            //may be rename on Departments?
             $table->id();
             $table->string('name');
             $table->foreignId('officer_id')->constrained('officers')->onUpdate('cascade');

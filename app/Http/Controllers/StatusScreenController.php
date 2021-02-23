@@ -9,5 +9,5 @@ class StatusScreenController extends Controller
     public function show()
     {
         return view("index");
-    } 
+    }
 }

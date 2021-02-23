@@ -49,7 +49,7 @@ class OfficerTest extends TestCase
             'name',
             'surname',
             'patronymic',
-            'military_position' 
+            'military_position'
         ]);
         $response = $this->post(route('officers.store'), $data);
         $response->assertSessionHasNoErrors();
