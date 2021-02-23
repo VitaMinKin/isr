@@ -3,8 +3,12 @@
 @section('content')
     <div class="container-xl container mt-5">
     <div class="card text-center">
-        <div class="card-header d-flex justify-content-between text-muted">
-            <p class="m-0 p-0"> Дата создания записи - <b>{{ $officer->created_at }}</b> </p> <p class="m-0 p-0"> Последнее обновление - <b>{{ $officer->updated_at }}</b> </p>
+        <div class="card-header text-muted">
+            @if ($officer->information_security)
+                <p class="p-0 m-0 text-uppercase"> Отдел обеспечения безопасности информации </p>
+            @else
+                <p class="p-0 m-0 text-uppercase"> Ответственные за защиту информации в управлениях </p>
+            @endif
         </div>
         <div class="row card-body">
             <div class="col">
@@ -30,8 +34,8 @@
                 </div>
             </div>
         </div>
-        <div class="card-footer text-muted">
-            <p class="p-0 m-0 text-uppercase"> Отдел обеспечения безопасности информации </p>
+        <div class="card-footer text-muted d-flex justify-content-between">
+            <p class="m-0 p-0"> Дата создания записи - <b>{{ $officer->created_at }}</b> </p> <p class="m-0 p-0"> Последнее обновление - <b>{{ $officer->updated_at }}</b> </p>
         </div>
     </div>
     </div>

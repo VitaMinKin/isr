@@ -15,6 +15,7 @@ class UpdateOfficersTable extends Migration
     {
         Schema::table('officers', function (Blueprint $table) {
             $table->string('avatar')->nullable();
+            $table->boolean('information_security')->default(false);
         });
     }
 

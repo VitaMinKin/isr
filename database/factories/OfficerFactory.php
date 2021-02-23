@@ -26,7 +26,8 @@ class OfficerFactory extends Factory
             'name' => $this->faker->firstName(),
             'surname' => $this->faker->lastName(),
             'patronymic' => $this->faker->name(),
-            'military_position' => $this->faker->jobTitle()
+            'military_position' => $this->faker->jobTitle(),
+            'information_security' => $this->faker->boolean()
         ];
     }
 }

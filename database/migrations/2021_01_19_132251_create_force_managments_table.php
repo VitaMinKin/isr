@@ -17,7 +17,6 @@ class CreateForceManagmentsTable extends Migration
             //may be rename on Departments?
             $table->id();
             $table->string('name');
-            $table->foreignId('officer_id')->constrained('officers')->onUpdate('cascade');
             $table->timestamps();
         });
     }

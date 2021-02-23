@@ -20,9 +20,20 @@
         </div>
     </div>        
     <div class="row">
-        <div class="col-12">
+        <div class="col-8">
             {{ Form::label('military_position', 'Должность', ['class' => 'form-label']) }}
             {{ Form::text('military_position', "$officer->military_position", ['class' => 'form-control']) }}
+        </div>
+        <div class="col-4 d-flex justify-content-center align-items-end">
+            <div class="col p-0">
+                
+                
+                <div class="form-check form-switch">
+                    {{ Form::checkbox('information_security', "$officer->information_security" or 'false', "$officer->information_security", ['class' => 'form-check-input']) }}
+                    {{ Form::label('information_security', 'Офицер отдела ОБИ', ['class' => 'form-check-label']) }}
+                    
+                </div>
+            </div>
         </div>
     </div>
     <div class = "row">

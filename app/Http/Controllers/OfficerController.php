@@ -43,6 +43,8 @@ class OfficerController extends Controller
      */
     public function store(StoreOfficerRequest $request)
     {
+        dump($request->all());
+
         $validated = $request->validated();
 
         $officer = new Officer();
@@ -54,7 +56,7 @@ class OfficerController extends Controller
         }
 
         $officer->fill($validated);
-
+        
         $officer->save();
         //Technical debt: use laravel locale
         flash("Запись офицера '$officer->surname $officer->name $officer->patronymic' успешно добавлена в базу данных")
@@ -72,6 +74,10 @@ class OfficerController extends Controller
      */
     public function show(Officer $officer)
     {
+        if (empty($officer->avatar)) {
+            $officer->avatar = "public/avatars/no_photo.jpg";
+        }
+
         return view("officers.show", compact('officer'));
     }
 

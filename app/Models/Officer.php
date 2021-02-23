@@ -14,7 +14,8 @@ class Officer extends Model
         'surname',
         'name',
         'patronymic',
-        'military_position'
+        'military_position',
+        'information_security'
     ];
 
     public function militaryRanks()

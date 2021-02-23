@@ -49,7 +49,8 @@ class OfficerTest extends TestCase
             'name',
             'surname',
             'patronymic',
-            'military_position'
+            'military_position',
+            'information_security'
         ]);
         $response = $this->post(route('officers.store'), $data);
         $response->assertSessionHasNoErrors();
@@ -67,7 +68,8 @@ class OfficerTest extends TestCase
             'name',
             'surname',
             'patronymic',
-            'military_position'
+            'military_position',
+            'information_security'
         ]);
         $response = $this->patch(route('officers.update', $officer), $data);
         $response->assertSessionHasNoErrors();
