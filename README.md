@@ -1,6 +1,6 @@
 ## ISR - StatusScreen
 
-![CI](https://github.com/VitaMinKin/isr/workflows/CI/badge.svg?branch=master) [![UnitTests](https://github.com/VitaMinKin/isr/actions/workflows/laravel.yml/badge.svg)](https://github.com/VitaMinKin/isr/actions/workflows/laravel.yml)
+![CI](https://github.com/VitaMinKin/isr/workflows/CI/badge.svg?branch=master) [![UnitTests](https://github.com/VitaMinKin/isr/actions/workflows/laravel.yml/badge.svg)](https://github.com/VitaMinKin/isr/actions/workflows/laravel.yml) [![Lint](https://github.com/VitaMinKin/isr/actions/workflows/lint.yml/badge.svg)](https://github.com/VitaMinKin/isr/actions/workflows/lint.yml)
 
 Development of a project to automate routine activities at work.
 
