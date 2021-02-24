@@ -70,11 +70,9 @@ class StoreOfficerRequest extends FormRequest
     public function withValidator($validator)
     {
         $validator->after(function ($validator) {
-            //if ($validator->fails()) {
             foreach ($validator->errors()->all() as $error) {
                 flash($error)->error()->important();
             }
-            //}
         });
     }
 }

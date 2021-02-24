@@ -21,6 +21,8 @@ class CreateOfficersTable extends Migration
             $table->string('name');
             $table->string('patronymic');
             $table->string('military_position');
+            $table->string('avatar')->nullable();
+            $table->boolean('information_security')->default(false);
             $table->timestamps();
         });
     }

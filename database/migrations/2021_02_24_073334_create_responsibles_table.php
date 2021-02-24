@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateForceManagmentsTable extends Migration
+class CreateResponsiblesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class CreateForceManagmentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('force_managments', function (Blueprint $table) {
-            //may be rename on Departments?
+        Schema::create('responsibles', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->smallInteger('order_id');
+            $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade')->onUpdate('cascade');
+            $table->integer('officer_id');
+            $table->integer('headquarter_id');
             $table->timestamps();
         });
     }
@@ -28,6 +30,6 @@ class CreateForceManagmentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('force_managments');
+        Schema::dropIfExists('responsibles');
     }
 }

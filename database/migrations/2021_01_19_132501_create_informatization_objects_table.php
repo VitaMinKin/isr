@@ -17,8 +17,9 @@ class CreateInformatizationObjectsTable extends Migration
             $table->id();
             $table->string('name');
             $table->smallInteger('category');
-            $table->foreignId('force_managment_id')->constrained()->onDelete('cascade');
-            $table->boolean('type');
+            $table->integer('headquarter_id');
+            $table->foreign('headquarter_id')->references('id')->on('headquarters')->onDelete('cascade')->onUpdate('cascade');
+            $table->smallInteger('type');
             $table->timestamps();
         });
     }

@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class MilitaryRank extends Model
+class Headquarter extends Model
 {
     use HasFactory;
 
     public function officers()
     {
-        $this->hasMany(Officer::class, "military_rank");
+        return $this->belongsToMany(Officer::class, 'responsibles')->withPivot('order_id');
     }
 }

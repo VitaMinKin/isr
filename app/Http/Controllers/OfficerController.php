@@ -43,8 +43,6 @@ class OfficerController extends Controller
      */
     public function store(StoreOfficerRequest $request)
     {
-        dump($request->all());
-
         $validated = $request->validated();
 
         $officer = new Officer();

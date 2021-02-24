@@ -20,11 +20,11 @@ class Officer extends Model
 
     public function militaryRanks()
     {
-        return $this->belongsTo('\App\Models\MilitaryRank', 'military_rank');
+        return $this->belongsTo(MilitaryRank::class, 'military_rank');
     }
 
-    public function forceManagments()
+    public function headquarters()
     {
-        return $this->hasMany("\App\Models\ForceManagment");
+        return $this->belongsToMany(Headquarter::class, 'responsibles')->withPivot('order_id');
     }
 }

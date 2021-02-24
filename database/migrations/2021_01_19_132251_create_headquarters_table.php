@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class UpdateOfficersTable extends Migration
+class CreateHeadquartersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,11 @@ class UpdateOfficersTable extends Migration
      */
     public function up()
     {
-        Schema::table('officers', function (Blueprint $table) {
-            $table->string('avatar')->nullable();
-            $table->boolean('information_security')->default(false);
+        Schema::create('headquarters', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('short_name');
+            $table->timestamps();
         });
     }
 
@@ -26,8 +28,6 @@ class UpdateOfficersTable extends Migration
      */
     public function down()
     {
-        Schema::table('officers', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('headquarters');
     }
 }
