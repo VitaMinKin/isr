@@ -18,8 +18,9 @@ class CreateResponsiblesTable extends Migration
             $table->smallInteger('order_id');
             $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade')->onUpdate('cascade');
             $table->integer('officer_id');
-            $table->integer('headquarter_id');
-            $table->timestamps();
+            $table->foreign('officer_id')->references('id')->on('officers');
+            $table->integer('department_id');
+            $table->foreign('department_id')->references('id')->on('departments');
         });
     }
 

@@ -5,10 +5,10 @@
     <div class="row mt-6 justify-content-center">
         <div class="col-9">
 
-            <h1 class="text-center">Должностное лицо управления, отдела (отделения), службы штаба округа</h1>
+            <h1 class="text-center">Управление, отдел (отделение), служба <br /> штаба округа</h1>
             
-            {{ Form::model($officer, ['url' => route('officers.store'), 'files' => true]) }}
-                @include('officers.form')
+            {{ Form::model($department, ['url' => route('departments.store')]) }}
+                @include('departments.form')
                 <div class="row">
                     <div class="col d-flex justify-content-end">
                         {{ Form::submit('Добавить', ['class' => 'btn btn-primary']) }}

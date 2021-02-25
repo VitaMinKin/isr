@@ -17,6 +17,7 @@ class CreateOrdersTable extends Migration
             $table->id();
             $table->smallInteger('number');
             $table->date('date');
+            $table->string('signature');
             $table->string('title');
             $table->string('file_name');
             $table->string('file_path');
@@ -31,6 +32,6 @@ class CreateOrdersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('information_security_orders');
+        Schema::dropIfExists('orders');
     }
 }

@@ -36,6 +36,17 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-xl-12 col-12 mt-1">
+                <div class="form-check form-switch p-0">
+                    <div class="form-group">
+                        {{ Form::label('departments', 'Отметьте (через ctrl) связанные управления', ['class' => 'form-check-label']) }}
+                        {{ Form::select('departments[]', $departments, $officer->departments()->pluck('department_id'), ['multiple' => 'multiple', 'class' => 'form-control']) }}
+                        <p class="text-right"> <a href="/departments"> Управления нет в списке </a> </p>
+                   </div>
+                </div>
+        </div>
+    </div>
     <div class = "row">
         <div class="form-group col my-3">
             {{ Form::label('avatar', 'Фото', ['class' => 'form-label']) }}

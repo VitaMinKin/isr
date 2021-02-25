@@ -6,6 +6,7 @@ use App\Models\Officer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\StoreOfficerRequest;
+use App\Models\Department;
 use Illuminate\Support\Facades\Storage;
 
 class OfficerController extends Controller
@@ -30,9 +31,12 @@ class OfficerController extends Controller
     public function create()
     {
         $ranks = \App\Models\MilitaryRank::pluck('name', 'id');
+        $departments = Department::pluck('short_name', 'id');
+
         $officer = new Officer();
-        return view("officers.create", compact('ranks', 'officer'));
+        return view("officers.create", compact('ranks', 'officer', 'departments'));
     }
+
     //@param  \Illuminate\Http\Request  $request
     /**
      * Store a newly created resource in storage.
@@ -54,8 +58,13 @@ class OfficerController extends Controller
         }
 
         $officer->fill($validated);
-        
+
         $officer->save();
+
+        if ($request->input('departments')) {
+            $officer->departments()->attach($request->input('departments'), ['order_id' => 1]);
+        }
+
         //Technical debt: use laravel locale
         flash("Запись офицера '$officer->surname $officer->name $officer->patronymic' успешно добавлена в базу данных")
             ->success();
@@ -76,7 +85,10 @@ class OfficerController extends Controller
             $officer->avatar = "public/avatars/no_photo.jpg";
         }
 
-        return view("officers.show", compact('officer'));
+        $departments = Department::pluck("short_name", "id");
+        //dump($departments);
+
+        return view("officers.show", compact('officer', 'departments'));
     }
 
     /**
@@ -89,8 +101,9 @@ class OfficerController extends Controller
     public function edit(Officer $officer)
     {
         $ranks = \App\Models\MilitaryRank::pluck('name', 'id');
+        $departments = Department::pluck('short_name', 'id');
 
-        return view('officers.edit', compact('officer', 'ranks'));
+        return view('officers.edit', compact('officer', 'ranks', 'departments'));
     }
 
     /**
@@ -112,7 +125,17 @@ class OfficerController extends Controller
         }
 
         $officer->fill($validated);
+
+        if (!$request->input('information_security')) {
+            $officer->information_security = false;
+        }
+
         $officer->save();
+
+        $officer->departments()->detach();
+        if ($request->input('departments')) {
+            $officer->departments()->attach($request->input('departments'), ['order_id' => 1]);
+        }
 
         //Technical debt: use laravel locale
         flash("Данные на офицера '$officer->surname $officer->name $officer->patronymic' успешно сохранены!")
@@ -132,6 +155,7 @@ class OfficerController extends Controller
     {
         if ($officer) {
             Storage::delete($officer->avatar);
+            $officer->departments()->detach();
             $officer->delete();
         }
         //Technical debt: use laravel locale

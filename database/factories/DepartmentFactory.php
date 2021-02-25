@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\Headquarter;
+use App\Models\Department;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class HeadquarterFactory extends Factory
+class DepartmentFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Headquarter::class;
+    protected $model = Department::class;
 
     /**
      * Define the model's default state.
@@ -23,7 +23,8 @@ class HeadquarterFactory extends Factory
     {
         return [
             'name' => $this->faker->company(),
-            'short_name' => $this->faker->jobTitle()
+            'short_name' => $this->faker->jobTitle(),
+            'subordination' => $this->faker->company()
         ];
     }
 }

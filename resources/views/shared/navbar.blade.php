@@ -9,16 +9,13 @@
         <li class="nav-item active">
             <a class="nav-link" href="/">Экран состояния <span class="sr-only">(current)</span></a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">Администрирование</a>
-        </li>
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Другие  разделы
+            Администрирование
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="/officers">Офицеры ООБИ</a>
-            <a class="dropdown-item" href="#">Управления округа</a>
+            <a class="dropdown-item" href="/officers">Должностные лица</a>
+            <a class="dropdown-item" href="/departments">Управления округа</a>
             <a class="dropdown-item" href="#">Объекты информатизации</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="#">На главную</a>

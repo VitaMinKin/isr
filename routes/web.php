@@ -1,6 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\StatusScreenController;
+use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\OfficerController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,8 +15,8 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-use App\Http\Controllers\StatusScreenController;
-use App\Http\Controllers\OfficerController;
+
 
 Route::get('/', [StatusScreenController::class, 'show']);
 Route::resource('officers', OfficerController::class);
+Route::resource('departments', DepartmentController::class);

@@ -23,8 +23,8 @@ class Officer extends Model
         return $this->belongsTo(MilitaryRank::class, 'military_rank');
     }
 
-    public function headquarters()
+    public function departments()
     {
-        return $this->belongsToMany(Headquarter::class, 'responsibles')->withPivot('order_id');
+        return $this->belongsToMany(Department::class, 'responsibles')->withPivot('order_id');
     }
 }
