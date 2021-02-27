@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StatusScreenController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\OfficerController;
+use App\Http\Controllers\InformatizationObjectController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +21,4 @@ use App\Http\Controllers\OfficerController;
 Route::get('/', [StatusScreenController::class, 'show']);
 Route::resource('officers', OfficerController::class);
 Route::resource('departments', DepartmentController::class);
+Route::resource('objects', InformatizationObjectController::class);

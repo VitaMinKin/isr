@@ -16,7 +16,7 @@
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="/officers">Должностные лица</a>
             <a class="dropdown-item" href="/departments">Управления округа</a>
-            <a class="dropdown-item" href="#">Объекты информатизации</a>
+            <a class="dropdown-item" href="{{ route('objects.index') }}">Объекты информатизации</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="#">На главную</a>
             </div>

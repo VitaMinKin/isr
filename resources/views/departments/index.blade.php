@@ -3,7 +3,7 @@
 @section('content')
  <div class='container-lg'>
     
-    <h2 class="text-center text-uppercase mt-3"> Управления, отделы (отделения) и службы штаба округа </h2>
+    <h3 class="text-center text-uppercase mt-3"> Управления, отделы (отделения) и службы штаба округа </h3>
     
     <table class="table table-bordered table-striped table-responsive-sm table-sm" cols="4">
     <thead class="table-dark">

@@ -5,7 +5,7 @@
     <div class="row mt-6 justify-content-center">
         <div class="col-9">
 
-            <h1 class="text-center">Должностное лицо отдела ОБИ</h1>
+            <h3 class="text-center">Должностное лицо управления, отдела (отделения), <br /> службы штаба округа</h3>
             
             {{ Form::model($officer, ['url' => route('officers.update', $officer), 'method' => 'PATCH', 'files' => true]) }}
                 @include('officers.form')

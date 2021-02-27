@@ -30,7 +30,7 @@
                 
                 <div class="form-check form-switch">
                     {{ Form::checkbox('information_security', "$officer->information_security" or 'false', "$officer->information_security", ['class' => 'form-check-input']) }}
-                    {{ Form::label('information_security', 'Офицер отдела ОБИ', ['class' => 'form-check-label']) }}
+                    {{ Form::label('information_security', 'Офицер отдела ОБИ', ['class' => 'form-check-label', 'data-toggle'=>"tooltip", 'data-placement'=>"top", 'title'=>"Для ответственных по ЗИ галочку снять!"]) }}
                     
                 </div>
             </div>

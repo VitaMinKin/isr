@@ -5,7 +5,7 @@
     <div class="row mt-6 justify-content-center">
         <div class="col-9">
 
-            <h1 class="text-center">Управление, отдел (отделение), служба <br /> штаба округа</h1>
+            <h3 class="text-center">Управление, отдел (отделение), служба <br /> штаба округа</h3>
             
             {{ Form::model($department, ['url' => route('departments.store')]) }}
                 @include('departments.form')

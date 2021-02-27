@@ -18,7 +18,7 @@ class Officer extends Model
         'information_security'
     ];
 
-    public function militaryRanks()
+    public function militaryRank()
     {
         return $this->belongsTo(MilitaryRank::class, 'military_rank');
     }

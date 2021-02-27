@@ -3,7 +3,7 @@
 @section('content')
  <div class='container-lg'>
     
-    <h2 class="text-center text-uppercase mt-3"> Ответственные за обеспечение безопасности информации <br/> на объектах информатизации </h2>
+    <h3 class="text-center text-uppercase mt-3"> Должностные лица, обеспечивающие <br /> безопасности информации на объектах информатизации </h3>
     
     <table class="table table-bordered table-striped table-responsive-sm table-sm" cols="4">
     <thead class="table-dark">
@@ -28,7 +28,7 @@
                 <tr title='{{ $officer->surname }} {{ $officer->name }} {{ $officer->patronymic }}'>
                     <th scope="row">{{ $loop->iteration }}</th>
                     <td>{{ $officer->military_position }} </td>
-                    <td>{{ $officer->militaryRanks()->first()->name }}</td>
+                    <td>{{ $officer->militaryRank->name }}</td>
                     <td><a href="/officers/{{ $officer->id }}">{{ $officer->surname }} {{ mb_substr($officer->name, 0, 1) }}.{{ mb_substr($officer->patronymic, 0, 1) }}.</a></td>
                 </tr>
             @endforeach
@@ -38,7 +38,7 @@
     </tbody>
     </table>
     <div class="row d-flex justify-content-end m-0">
-        <a class="btn btn-primary" href="/officers/create" role="button">Добавить</a>
+        <a class="btn btn-primary" href="{{ route('officers.create') }}" role="button">Добавить</a>
     </div>
 
     

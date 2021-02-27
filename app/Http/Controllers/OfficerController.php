@@ -86,7 +86,6 @@ class OfficerController extends Controller
         }
 
         $departments = Department::pluck("short_name", "id");
-        //dump($departments);
 
         return view("officers.show", compact('officer', 'departments'));
     }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreDepartmentRequest;
 use App\Models\Department;
+use App\Models\Officer;
 use Illuminate\Http\Request;
 
 class DepartmentController extends Controller
@@ -29,7 +30,23 @@ class DepartmentController extends Controller
     {
         $department = new Department();
 
-        return view("departments.create", compact('department'));
+        $officers = Officer::get();
+
+        $officersObi = $officers->filter(function ($item) {
+            return $item['information_security'];
+        })->sortBy('surname')
+            ->mapWithKeys(function ($item) {
+                return [$item['id'] => "{$item->militaryRank->name} {$item['surname']} {$item['name']} {$item['patronymic']}"];
+            });
+
+        $officersOzi = $officers->reject(function ($item) {
+            return $item['information_security'];
+        })->sortBy('surname')
+            ->mapWithKeys(function ($item) {
+                return [$item['id'] => "{$item->militaryRank->name} {$item['surname']} {$item['name']} {$item['patronymic']}"];
+            });
+
+        return view("departments.create", compact('department', 'officersObi', 'officersOzi'));
     }
 
     /**
@@ -47,7 +64,14 @@ class DepartmentController extends Controller
         $department->fill($validated);
         $department->save();
 
-        flash("{$department->name} успешно добавлена в базу данных")->success();
+        $officersObi = empty($request->input('officersObi')) ? [] : $request->input('officersObi');
+        $officersOzi = empty($request->input('officersOzi')) ? [] : $request->input('officersOzi');
+
+        $responsibles = [...$officersObi, ...$officersOzi];
+
+        $department->officers()->attach($responsibles, ['order_id' => 1]);
+
+        flash("Информация по управлению '{$department->name}' успешно сохранена")->success();
 
         return redirect()->route('departments.index');
     }
@@ -75,7 +99,21 @@ class DepartmentController extends Controller
     {
         $department = Department::findOrFail($id);
 
-        return view('departments.edit', compact('department'));
+        $officers = Officer::get();
+
+        $officersObi = $officers->filter(function ($item) {
+            return $item['information_security'];
+        })->mapWithKeys(function ($item) {
+            return [$item['id'] => "{$item->militaryRank->name} {$item['surname']} {$item['name']}  {$item['patronymic']}"];
+        });
+
+        $officersOzi = $officers->reject(function ($item) {
+            return $item['information_security'];
+        })->mapWithKeys(function ($item) {
+            return [$item['id'] => "{$item->militaryRank->name} {$item['surname']} {$item['name']}  {$item['patronymic']}"];
+        });
+
+        return view('departments.edit', compact('department', 'officersObi', 'officersOzi'));
     }
 
     /**
@@ -94,7 +132,15 @@ class DepartmentController extends Controller
         $department->fill($validated);
         $department->save();
 
-        flash("Данные управления (отдела (отделения), службы) '$department->name' успешно сохранены!")
+        $officersObi = empty($request->input('officersObi')) ? [] : $request->input('officersObi');
+        $officersOzi = empty($request->input('officersOzi')) ? [] : $request->input('officersOzi');
+
+        $responsibles = [...$officersObi, ...$officersOzi];
+
+        $department->officers()->detach();
+        $department->officers()->attach($responsibles, ['order_id' => 1]);
+
+        flash("Информация по управлению '$department->name' сохранена!")
             ->success();
 
         return redirect()->route('departments.index');
@@ -111,6 +157,7 @@ class DepartmentController extends Controller
         $department = Department::findOrFail($id);
 
         if ($department) {
+            $department->officers()->detach();
             $department->delete();
         }
 

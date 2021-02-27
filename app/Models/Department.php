@@ -19,4 +19,9 @@ class Department extends Model
     {
         return $this->belongsToMany(Officer::class, 'responsibles')->withPivot('order_id');
     }
+
+    public function informatizationObjects()
+    {
+        return $this->hasMany(InformatizationObject::class);
+    }
 }

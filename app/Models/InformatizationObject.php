@@ -12,12 +12,12 @@ class InformatizationObject extends Model
     protected $fillable = [
         "name",
         "category",
-        "force_managment_id",
-        "type"
+        "type",
+        "department_id"
     ];
 
-    public function forceManagment()
+    public function department()
     {
-        $this->belongsTo("\App\Models\ForceManagment");
+        return $this->belongsTo(Department::class);
     }
 }

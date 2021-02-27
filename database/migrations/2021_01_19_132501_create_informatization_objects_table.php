@@ -17,9 +17,9 @@ class CreateInformatizationObjectsTable extends Migration
             $table->id();
             $table->string('name');
             $table->smallInteger('category');
+            $table->string('type');
             $table->integer('department_id');
             $table->foreign('department_id')->references('id')->on('departments')->onDelete('cascade')->onUpdate('cascade');
-            $table->smallInteger('type');
             $table->timestamps();
         });
     }
