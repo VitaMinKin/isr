@@ -143,7 +143,7 @@ class DepartmentController extends Controller
         flash("Информация по управлению '$department->name' сохранена!")
             ->success();
 
-        return redirect()->route('departments.index');
+        return redirect()->route('departments.show', $department);
     }
 
     /**

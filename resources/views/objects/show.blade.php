@@ -38,6 +38,7 @@
                                 <p class="p-0 pt-1 m-0 mt-3 font-italic"> Закрепленные офицеры по ОБИ </p>
                                 @forelse ($object->department->officers->where('information_security', true) as $officer)
                                 <a href='{{ route("officers.show", $officer) }}'>{{ $officer->militaryRank->name }} {{ $officer->surname }} {{ $officer->name }} {{ $officer->patronymic }}</a>
+                                <br />
                                 @empty
                                 <p class="card-text">Нет закрепленных офицеров по ОБИ</p>
                                 @endforelse
@@ -45,6 +46,7 @@
                                 <p class="p-0 pt-1 m-0 mt-3 font-italic"> Ответственные за защиту информации на объекте информатизации </p>
                                 @forelse ($object->department->officers->where('information_security', false) as $officer)
                                 <a href='{{ route("officers.show", $officer) }}'>{{ $officer->militaryRank->name }} {{ $officer->surname }} {{ $officer->name }} {{ $officer->patronymic }}</a>
+                                <br />
                                 @empty
                                 <p class="card-text">Нет офицеров, ответственных за защиту информации</p>
                                 @endforelse
@@ -76,8 +78,51 @@
                             <div class="col">
                                     <h5> Документы по вводу объекта информатизации в эксплуатацию </h5>
                                     <div class="list-group">
-                                        <a href="#" class="list-group-item list-group-item-action disabled">Информация по документам недоступна</a>
-                                    </div>
+                                    @if ($object->documents->isEmpty())
+                                        <a href="#" class="list-group-item list-group-item-action disabled">Документов на объект информатизации нет</a>
+                                    @else
+                                        <div class="list-group-item list-group-item-action disabled">
+                                            <div class="row">
+                                                <div class="col">
+                                                    Наименование документа
+                                                </div>
+                                                <div class="col">
+                                                    Предварительный учет (жувд)
+                                                </div>
+                                                <div class="col">
+                                                    Постоянный учет (инвентарный, входящий)
+                                                </div>
+                                                <div class="col">
+                                                    Дата документа            
+                                                </div>
+                                                <div class="col">
+                                                    Комментарий            
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @foreach ($object->documents as $document)
+                                            <div class="list-group-item list-group-item-action">
+                                                <div class="row">
+                                                    <div class="col">
+                                                        {{ $document->documentName->title }}
+                                                    </div>
+                                                    <div class="col">
+                                                        {{ $document->preliminary_accounting }}
+                                                    </div>
+                                                    <div class="col">
+                                                        {{ $document->number }}
+                                                    </div>
+                                                    <div class="col">
+                                                        {{ $document->date }}
+                                                    </div>
+                                                    <div class="col">
+                                                        {{ $document->comment }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    @endif
+                                </div>
                             </div>
                         </div>
                     </div>

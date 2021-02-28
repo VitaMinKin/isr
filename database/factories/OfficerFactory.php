@@ -22,7 +22,7 @@ class OfficerFactory extends Factory
     public function definition()
     {
         return [
-            'military_rank' => $this->faker->numberBetween(0, 32),
+            'military_rank' => $this->faker->numberBetween(1, 32),
             'name' => $this->faker->firstName(),
             'surname' => $this->faker->lastName(),
             'patronymic' => $this->faker->name(),

@@ -9,9 +9,9 @@
     <thead class="table-dark">
         <tr class="text-center">
             <th scope="col" width=3%>№ п/п</th>
-            <th scope="col" class='align-middle'>Наименование</th>
+            <th scope="col" class='col-xl-4 col-4 align-middle'>Наименование</th>
             <th scope="col" class="col-xl-2 col-2 align-middle">Короткое наименование <br /> (аббревиатура)</th>
-            <th scope="col" class="align-middle">Подчиненность</th>
+            <th scope="col" class="col-xl-2 col-2 align-middle">Подчиненность</th>
         </tr>
     </thead>
     <tbody class="table-hover cursor-pointer">
@@ -32,11 +32,10 @@
                     <td>{{ $department->subordination }}</td>
                 </tr>
             @endforeach
-
-            {{ $departments->links() }}
         @endif
     </tbody>
     </table>
+    {{ $departments->links("pagination::bootstrap-4") }}
     <div class="row d-flex justify-content-end m-0">
         <a class="btn btn-primary" href="/departments/create" role="button">Добавить</a>
     </div>

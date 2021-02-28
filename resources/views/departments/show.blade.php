@@ -55,9 +55,6 @@
                                         <div class="list-group">
                                             @if ($department->officers()->where('information_security', true)->get()->isEmpty())
                                                 <a href="#" class="list-group-item list-group-item-action disabled">Нет закрепленных офицеров</a>
-                                                <div class="col  text-right mt-2 p-0">
-                                                    Для добавления офицеров, перейдите в раздел <a href="{{ route('departments.edit', $department) }}"> редактирования управления </a>
-                                                </div>
                                             @else
                                                 @foreach ($department->officers()->where('information_security', true)->get() as $officer)
                                                     <a href="/officers/{{ $officer->id }}" class="list-group-item list-group-item-action">{{ $officer->militaryRank->name }} {{ $officer->surname }} {{ $officer->name }} {{ $officer->patronymic }} </a>
@@ -67,6 +64,7 @@
                                                 </div>
                                             @endif
                                                 <div class="col  text-right mt-2 p-0">
+                                                    <p class="card-text"> Для изменения списка офицеров по ОБИ, закрепленных за управлением, перейдите <a href="{{ route('departments.edit', $department) }}"> на страницу редактирования</a> управления</p>
                                                     <p class="card-text"> Вы также можете перейти на <a href="{{ route('officers.index') }}">список всех офицеров</a>, добавленных в систему </p>
                                                 </div>
                                         </div>
@@ -78,9 +76,6 @@
                                         <div class="list-group">
                                             @if ($department->officers()->where('information_security', false)->get()->isEmpty())
                                                 <a href="#" class="list-group-item list-group-item-action disabled">Нет закрепленных офицеров</a>
-                                                <div class="col  text-right mt-2 p-0">
-                                                    Для добавления офицеров, перейдите в раздел <a href="{{ route('departments.edit', $department) }}"> редактирования управления </a>
-                                                </div>
                                             @else
                                                 @foreach ($department->officers()->where('information_security', false)->get() as $officer)
                                                     <a href="/officers/{{ $officer->id }}" class="list-group-item list-group-item-action">{{ $officer->militaryRank->name }} {{ $officer->surname }} {{ $officer->name }} {{ $officer->patronymic }} </a>
@@ -90,6 +85,7 @@
                                                 </div>
                                             @endif
                                                 <div class="col  text-right mt-2 p-0">
+                                                    <p class="card-text"> Изменить офицеров, ответственных за защиту информации вы можете <a href="{{ route('departments.edit', $department) }}"> на странице редактирования</a> управления</p>
                                                     <p class="card-text"> Вы также можете перейти на <a href="{{ route('officers.index') }}">список всех офицеров</a>, добавленных в систему </p>
                                                 </div>
                                         </div>

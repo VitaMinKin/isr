@@ -16,7 +16,6 @@ class CreateMilitaryRanksTable extends Migration
         Schema::create('military_ranks', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->timestamps();
         });
     }
 

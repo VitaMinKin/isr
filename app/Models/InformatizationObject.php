@@ -20,4 +20,9 @@ class InformatizationObject extends Model
     {
         return $this->belongsTo(Department::class);
     }
+
+    public function documents()
+    {
+        return $this->hasMany(ObjectDocument::class);
+    }
 }

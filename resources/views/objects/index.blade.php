@@ -34,11 +34,10 @@
                     <td>{{ $object->type }}</td>
                 </tr>
             @endforeach
-
-            {{ $objects->links() }}
         @endif
     </tbody>
     </table>
+    {{ $objects->links("pagination::bootstrap-4") }}
     <div class="row d-flex justify-content-end m-0">
         <a class="btn btn-primary" href="{{ route('objects.create') }}" role="button">Добавить</a>
     </div>

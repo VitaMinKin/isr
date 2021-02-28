@@ -43,7 +43,6 @@ class InformatizationObjectTest extends TestCase
         $this->assertEquals(3, Department::count()); //2 - setup + 1 this
     }
 
-    
     public function testIndex()
     {
         $response = $this->get(route('objects.index'));
@@ -105,6 +104,4 @@ class InformatizationObjectTest extends TestCase
 
         $this->assertDatabaseMissing('informatization_objects', ['id' => $object->id]);
     }
-
-
 }

@@ -9,9 +9,9 @@
     <thead class="table-dark">
         <tr class="text-center">
             <th scope="col" width=3%>№ п/п</th>
-            <th scope="col" class='align-middle'>Должность</th>
+            <th scope="col" class='col-xl-4 col-4 align-middle'>Должность</th>
             <th scope="col" class="col-xl-4 col-4 align-middle">Воинское звание</th>
-            <th scope="col" class="align-middle">ФИО</th>
+            <th scope="col" class="col-xl-4 col-4 align-middle">ФИО</th>
         </tr>
     </thead>
     <tbody class="table-hover cursor-pointer">
@@ -32,11 +32,10 @@
                     <td><a href="/officers/{{ $officer->id }}">{{ $officer->surname }} {{ mb_substr($officer->name, 0, 1) }}.{{ mb_substr($officer->patronymic, 0, 1) }}.</a></td>
                 </tr>
             @endforeach
-
-            {{ $officers->links() }}
         @endif
     </tbody>
     </table>
+    {{ $officers->links("pagination::bootstrap-4") }}
     <div class="row d-flex justify-content-end m-0">
         <a class="btn btn-primary" href="{{ route('officers.create') }}" role="button">Добавить</a>
     </div>
