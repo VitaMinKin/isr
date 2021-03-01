@@ -20,4 +20,8 @@
         {{ Form::select('type', ['ВТ' => 'Вычислительной техники', 'ВП' => 'Выделенного помещения'], $object->type, ['class' => 'form-control custom-select'] ) }}
     </div>
 </div>
+<div class="form-group">
+        {{ Form::label('comment', 'Комментарий или примечание', ['class' => 'form-label']) }}
+        {{ Form::textarea('comment', "$object->comment", ['class' => 'form-control', 'rows' => '3']) }}
+</div>
     

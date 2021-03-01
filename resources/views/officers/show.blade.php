@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container-xl container mt-5">
-    <h2 class="text-center mb-4 "> Должностные лица </h2>
+    <h2 class="text-center mb-4 "> {{ $officer->militaryRank->name }} {{ $officer->surname }} {{ $officer->name }} {{ $officer->patronymic }}  </h2>
     <div class="card text-center">
         <div class="card-header">
             <div class="row">

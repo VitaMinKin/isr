@@ -13,7 +13,7 @@ class InformatizationObject extends Model
         "name",
         "category",
         "type",
-        "department_id"
+        "comment"
     ];
 
     public function department()

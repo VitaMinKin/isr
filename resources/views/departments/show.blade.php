@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container-xl container mt-5">
-        <h2 class="text-center mb-4 "> Управления, отделы (отделения) и службы </h2>
+        <h2 class="text-center mb-4 "> {{ $department->name }} </h2>
         <div class="card text-center">
             <div class="card-header text-muted">
                 <div class="row">
@@ -166,6 +166,11 @@
                                                 <option value="ВП">Вычислительной техники</option>
                                                 <option value="ВТ">Выделенного помещения</option>
                                             </select>
+                                        </div>
+
+                                        <div class="col-auto my-1">
+                                            <label class="sr-only" for="comment">Комментарий</label>
+                                            <input type="text" class="form-control mr-sm-2" id="comment" name="comment" placeholder="Комментарий">
                                         </div>
                             
                                         <button type="submit" class="btn btn-primary">Добавить</button>

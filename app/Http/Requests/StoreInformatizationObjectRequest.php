@@ -27,7 +27,8 @@ class StoreInformatizationObjectRequest extends FormRequest
             'name' => 'required',
             'category' => 'required',
             'type' => 'required',
-            'department_id' => 'required'
+            'department_id' => 'required',
+            'comment' => 'nullable'
         ];
     }
 
@@ -53,7 +54,8 @@ class StoreInformatizationObjectRequest extends FormRequest
         return [
             'name' => 'Наименование объекта информатизации',
             'category' => 'Категория',
-            'type' => 'Тип'
+            'type' => 'Тип',
+            'comment' => 'Комментарий'
         ];
     }
 

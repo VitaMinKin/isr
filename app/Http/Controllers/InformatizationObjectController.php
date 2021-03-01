@@ -6,6 +6,7 @@ use App\Models\InformatizationObject;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreInformatizationObjectRequest;
 use App\Models\Department;
+use App\Models\DocumentName;
 
 class InformatizationObjectController extends Controller
 {
@@ -17,7 +18,7 @@ class InformatizationObjectController extends Controller
     public function index()
     {
         $objects = InformatizationObject::paginate();
-
+        
         return view('objects.index', compact('objects'));
     }
 
@@ -41,8 +42,15 @@ class InformatizationObjectController extends Controller
      */
     public function store(StoreInformatizationObjectRequest $request)
     {
+        //dump($request->all());
         $validated = $request->validated();
-        InformatizationObject::create($validated);
+
+        $department = Department::findOrFail($validated['department_id']);
+        $object = $department->informatizationObjects()->make($validated);
+        dump($validated);
+        $object->save();
+        //$object = InformatizationObject::create($validated);
+        //$object->department()->associate();
 
         return redirect()->back();
     }
@@ -57,7 +65,9 @@ class InformatizationObjectController extends Controller
     {
         $object = InformatizationObject::findOrFail($id);
 
-        return view('objects.show', compact('object'));
+        $documentNames = DocumentName::pluck('title', 'id');
+        
+        return view('objects.show', compact('object', 'documentNames'));
     }
 
     /**
@@ -84,9 +94,15 @@ class InformatizationObjectController extends Controller
     {
         $validated = $request->validated();
 
+        $department = Department::findOrFail($validated['department_id']);
+
+        if ($validated['department_id'] !== $object->department_id) {
+            $object->department()->associate($department);
+        }
+
         $object->update($validated);
 
-        return redirect()->route('departments.index');
+        return redirect()->route('objects.show', $object);
     }
 
     /**
