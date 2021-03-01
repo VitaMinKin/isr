@@ -42,15 +42,12 @@ class InformatizationObjectController extends Controller
      */
     public function store(StoreInformatizationObjectRequest $request)
     {
-        //dump($request->all());
         $validated = $request->validated();
 
         $department = Department::findOrFail($validated['department_id']);
         $object = $department->informatizationObjects()->make($validated);
-        dump($validated);
+        
         $object->save();
-        //$object = InformatizationObject::create($validated);
-        //$object->department()->associate();
 
         return redirect()->back();
     }
