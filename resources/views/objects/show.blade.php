@@ -132,31 +132,36 @@
                                         <form action=" route('documents.store') " method="post">
                                                 <input type="hidden" name="informatization_object_id" value="{{ $object->id }}">
                                                 {{ csrf_field() }}
-                                            <div class="form-row align-items-center d-flex justify-content-center">
-                                                <div class="col-auto my-1">
-                                                    {{ Form::label('document_name_id', 'Наименование документа', ['class' => 'sr-only']) }}
-                                                    {{ Form::select('document_name_id', $documentNames, ['class' => 'form-control custom-select mr-sm-2'] ) }}
-                                                </div>
-                                                
-                                                <div class="col-auto my-1">
-                                                    {{ Form::label('preliminary_accounting', 'Номер предварительного учета (жувд)', ['class' => 'sr-only']) }}
-                                                    {{ Form::text('preliminary_accounting', '', ['class' => 'form-control mr-sm-2', 'placeholder' => 'Номер предварительного учета (жувд)']) }}
-                                                </div>
-                                                
-                                                <div class="col-auto my-1">
-                                                    {{ Form::label('number', 'Номер постоянного учета (вх., инв.)', ['class' => 'sr-only']) }}
-                                                    {{ Form::text('number', '', ['class' => 'form-control mr-sm-2', 'placeholder' => 'Номер постоянного учета (вх., инв.)']) }}
-                                                </div>
-
-                                                <div class="col-auto my-1">
+                                            <div class="row">
+                                                <div class="form-row align-items-center d-flex justify-content-center">
+                                                    <div class="col my-1">
+                                                        {{ Form::label('document_name_id', 'Наименование документа', ['class' => 'sr-only']) }}
+                                                        {{ Form::select('document_name_id', $documentNames, '', ['class' => 'form-control custom-select mr-sm-2'] ) }}
+                                                    </div>
                                                     
+                                                    <div class="col my-1">
+                                                        {{ Form::label('preliminary_accounting', 'Номер предварительного учета (жувд)', ['class' => 'sr-only']) }}
+                                                        {{ Form::text('preliminary_accounting', '', ['class' => 'form-control mr-sm-2', 'placeholder' => 'Номер предварительного учета (жувд)']) }}
+                                                    </div>
+                                                    
+                                                    <div class="col my-1">
+                                                        {{ Form::label('number', 'Номер постоянного учета (вх., инв.)', ['class' => 'sr-only']) }}
+                                                        {{ Form::text('number', '', ['class' => 'form-control mr-sm-2', 'placeholder' => 'Номер постоянного учета (вх., инв.)']) }}
+                                                    </div>
+
+                                                    <div class="col my-1">
+                                                        {{ Form::label('data', 'Дата документа', ['class' => 'sr-only']) }}
+                                                        <input type="text" class="form-control" id="example">
+                                                    </div>
+                                                    
+                                                    <div class="col-auto my-1 custom-file">
+                                                        <input type="file" class="custom-file-input" id="customFile">
+                                                        <label class="custom-file-label" for="customFile">Choose file</label>
+                                                    </div>
+                                                    
+                                        
+                                                    <button type="submit" class="btn btn-primary">Добавить</button>
                                                 </div>
-                                                <div class="col-auto my-1 custom-file">
-                                                    <input type="file" class="custom-file-input" id="customFile">
-                                                    <label class="custom-file-label" for="customFile">Choose file</label>
-                                                </div>
-                                    
-                                                <button type="submit" class="btn btn-primary">Добавить</button>
                                             </div>
                                         </form>
                                     </div>

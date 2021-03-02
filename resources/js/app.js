@@ -7,6 +7,8 @@ $(function () {
     $('[data-toggle="tooltip"]').tooltip()
   });
 
-$(document).ready(function () {
-    bsCustomFileInput.init()
-  });
+bsCustomFileInput.init();
+
+$(function () {
+   $('#example').datetimepicker();
+});

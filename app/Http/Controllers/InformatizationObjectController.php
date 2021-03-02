@@ -18,7 +18,7 @@ class InformatizationObjectController extends Controller
     public function index()
     {
         $objects = InformatizationObject::paginate();
-        
+
         return view('objects.index', compact('objects'));
     }
 
@@ -46,7 +46,7 @@ class InformatizationObjectController extends Controller
 
         $department = Department::findOrFail($validated['department_id']);
         $object = $department->informatizationObjects()->make($validated);
-        
+
         $object->save();
 
         return redirect()->back();
@@ -63,7 +63,7 @@ class InformatizationObjectController extends Controller
         $object = InformatizationObject::findOrFail($id);
 
         $documentNames = DocumentName::pluck('title', 'id');
-        
+
         return view('objects.show', compact('object', 'documentNames'));
     }
 
