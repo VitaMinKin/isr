@@ -8,7 +8,3 @@ $(function () {
   });
 
 bsCustomFileInput.init();
-
-$(function () {
-   $('#example').datetimepicker();
-});
