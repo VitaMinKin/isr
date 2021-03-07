@@ -62,9 +62,7 @@ class InformatizationObjectController extends Controller
     {
         $object = InformatizationObject::findOrFail($id);
 
-        $documentNames = DocumentName::pluck('title', 'id');
-
-        return view('objects.show', compact('object', 'documentNames'));
+        return view('objects.show', compact('object'));
     }
 
     /**

@@ -10,7 +10,7 @@ class ObjectDocument extends Model
     use HasFactory;
 
     protected $fillable = [
-        'document_title',
+        'document_name_id',
         'preliminary_accounting',
         'number',
         'date',

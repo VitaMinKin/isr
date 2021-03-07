@@ -127,54 +127,8 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-xl-12 col-12 mt-4">
-                                        <h5> Новый документ на объект информатизации</h5>
-                                        <form action=" route('documents.store') " method="post">
-                                                <input type="hidden" name="informatization_object_id" value="{{ $object->id }}">
-                                                {{ csrf_field() }}
-                                                <div class="row my-1">
-                                                    <div class="col-6">
-                                                        {{ Form::label('document_name_id', 'Наименование документа', ['class' => 'sr-only']) }}
-                                                        {{ Form::select('document_name_id', $documentNames, '', ['class' => 'form-control custom-select mr-sm-2'] ) }}
-                                                    </div>
-                                                    
-                                                    <div class="col-6">
-                                                        {{ Form::label('preliminary_accounting', 'Номер предварительного учета (жувд)', ['class' => 'sr-only']) }}
-                                                        {{ Form::text('preliminary_accounting', '', ['class' => 'form-control mr-sm-2', 'placeholder' => 'Номер предварительного учета (жувд)']) }}
-                                                    </div>
-                                                </div>
-                                                <div class="row my-1">
-                                                    
-                                                    <div class="col-4">
-                                                        <div class="row">
-                                                            <div class="col">
-                                                                {{ Form::label('number', 'Номер постоянного учета (вх., инв.)', ['class' => 'form-label']) }}
-                                                            </div>
-                                                            <div class="col">
-                                                                {{ Form::text('number', '', ['class' => 'form-control mr-sm-2', 'placeholder' => 'Номер постоянного учета (вх., инв.)']) }}
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col-4">
-                                                        {{ Form::label('data', 'Дата документа', ['class' => 'sr-only']) }}
-                                                        <input type="date" class="form-control" id="example">
-                                                    </div>
-                                                    
-                                                    <div class="col-4 custom-file">
-                                                        <input type="file" class="custom-file-input" id="customFile">
-                                                        <label class="custom-file-label mr-3" for="customFile">Choose file</label>
-                                                    </div>
-                                                </div> 
-                                                <div class="row my-1">
-                                                    <div class="col d-flex justify-content-end">
-                                                        <button type="submit" class="btn btn-primary">Добавить</button>
-                                                    </div>
-                                                </div>
-                                                
-                                               
-                                            
-                                        </form>
+                                    <div class="col-xl-12 col-12 my-1 d-flex justify-content-end">
+                                        <a href="{{ route('documents.create', ['object' => $object]) }}" class="btn btn-primary">Добавить документ</a>
                                     </div>
                                 </div>
                             </div>

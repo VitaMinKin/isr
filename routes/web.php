@@ -5,6 +5,7 @@ use App\Http\Controllers\StatusScreenController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\OfficerController;
 use App\Http\Controllers\InformatizationObjectController;
+use App\Http\Controllers\ObjectDocumentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +20,9 @@ use App\Http\Controllers\InformatizationObjectController;
 
 
 Route::get('/', [StatusScreenController::class, 'show']);
-Route::resource('officers', OfficerController::class);
-Route::resource('departments', DepartmentController::class);
-Route::resource('objects', InformatizationObjectController::class);
+Route::resources([
+    'officers' => OfficerController::class,
+    'departments' => DepartmentController::class,
+    'objects' => InformatizationObjectController::class
+]);
+Route::resource('documents', ObjectDocumentController::class)->except('index');
