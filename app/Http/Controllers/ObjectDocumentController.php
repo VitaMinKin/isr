@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\ObjectDocumentRequest;
 use App\Models\InformatizationObject;
 use App\Models\DocumentName;
+use Illuminate\Support\Facades\Storage;
 
 class ObjectDocumentController extends Controller
 {
@@ -36,7 +37,12 @@ class ObjectDocumentController extends Controller
         $informatizationObject = InformatizationObject::findOrFail($request->input('informatization_object_id'));
         $document = $informatizationObject->documents()->make($validated);
 
-        dump($document);
+        if ($request->hasFile('documentFile')) {
+            $pathToFile = Storage::putFile('public/objectDocuments', $request->file('documentFile'), 'public');
+
+            $document->file_path = $pathToFile;
+            $document->file_name = $request->input('documentFile');
+        }
 
         $document->save();
 

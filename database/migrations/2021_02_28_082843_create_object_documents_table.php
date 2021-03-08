@@ -20,7 +20,9 @@ class CreateObjectDocumentsTable extends Migration
             $table->smallInteger('document_name_id');
             $table->foreign('document_name_id')->references('id')->on('document_names')->onDelete('cascade')->onUpdate('cascade');
             $table->string('preliminary_accounting')->nullable();
+            $table->string('number_type')->nullable();
             $table->string('number')->nullable();
+            $table->string('number_mil_unit')->nullable();
             $table->date('date')->nullable();
             $table->string('file_name')->nullable();
             $table->string('file_path')->nullable();

@@ -20,7 +20,7 @@
                     <div class="form-group">
                         {{ Form::label('officersObi', 'Отметьте (через ctrl) офицеров по ОБИ, назначенных ответственными за управление', ['class' => 'form-check-label']) }}
                         {{ Form::select('officersObi[]', $officersObi, $department->officers()->pluck('officer_id'), ['multiple' => 'multiple', 'class' => 'form-control']) }}
-                        <p class="text-right"> <a href="/officers"> Офицера нет в списке </a> </p>
+                        <p class="text-right"> Если офицера нет в списке, его <a href="{{ route('officers.create') }}"> можно добавить </a> позднее, <a href="{{ route('officers.index') }}"> в соответствующем разделе! </a></p>
                    </div>
                 </div>
         </div>
@@ -31,7 +31,7 @@
                     <div class="form-group">
                         {{ Form::label('officersOzi', 'Отметьте (через ctrl) офицеров, назначенных ответственными за ЗИ в управлении', ['class' => 'form-check-label']) }}
                         {{ Form::select('officersOzi[]', $officersOzi, $department->officers()->pluck('officer_id'), ['multiple' => 'multiple', 'class' => 'form-control']) }}
-                        <p class="text-right"> <a href="/officers"> Офицера нет в списке </a> </p>
+                        <p class="text-right"> Если офицера нет в списке, его <a href="{{ route('officers.create') }}"> можно добавить </a> позднее, <a href="{{ route('officers.index') }}"> в соответствующем разделе! </a> </p>
                    </div>
                 </div>
         </div>

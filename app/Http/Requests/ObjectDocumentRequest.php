@@ -26,7 +26,9 @@ class ObjectDocumentRequest extends FormRequest
         return [
             'document_name_id' => 'required',
             'preliminary_accounting' => 'nullable',
+            'number_type' => 'nullable',
             'number' => 'nullable',
+            'number_mil_unit' => 'nullable',
             'date' => 'nullable',
             'comment' => 'nullable',
             'documentFile' => 'nullable|file'

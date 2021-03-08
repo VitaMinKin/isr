@@ -12,7 +12,9 @@ class ObjectDocument extends Model
     protected $fillable = [
         'document_name_id',
         'preliminary_accounting',
+        'number_type',
         'number',
+        'number_mil_unit',
         'date',
         'comment'
     ];

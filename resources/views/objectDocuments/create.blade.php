@@ -7,7 +7,7 @@
 
             <h3 class="text-center">Добавление документа в объект информатизации</h3>
             <h4 class="text-center">Управление: {{ $informatizationObject->department->name }}</h4>
-            <h4 class="text-center">Объект информатизации: {{ $informatizationObject->name }}</h4>
+            <h4 class="text-center mb-4">Объект информатизации: {{ $informatizationObject->name }}</h4>
             
             {{ Form::open(['url' => route('documents.store'), 'files' => true]) }}
                 <input name='informatization_object_id' type='hidden' value="{{ $informatizationObject->id }}" />
