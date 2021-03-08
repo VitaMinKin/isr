@@ -112,7 +112,17 @@
                                                         {{ $document->preliminary_accounting }}
                                                     </div>
                                                     <div class="col">
+                                                        @if ($document->number_type == "inventory")
+                                                            Инв. 
+                                                        @elseif ($document->number_type == "inbox")
+                                                            Вх. 
+                                                        @endif
                                                         {{ $document->number }}
+                                                        @if ($document->number_mil_unit == "osk")
+                                                            - ОСК ВВО
+                                                        @else
+                                                            - {{ $document->number_mil_unit ?? null}}
+                                                        @endif
                                                     </div>
                                                     <div class="col">
                                                         {{ $document->date }}

@@ -41,11 +41,40 @@ class ObjectDocumentController extends Controller
             $pathToFile = Storage::putFile('public/objectDocuments', $request->file('documentFile'), 'public');
 
             $document->file_path = $pathToFile;
-            $document->file_name = $request->input('documentFile');
+            $document->file_name = $request->file('documentFile')->getClientOriginalName();
         }
 
         $document->save();
 
         return redirect()->route('objects.show', $informatizationObject);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\ObjectDocument  $document
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function show(ObjectDocument $document)
+    {
+        $documentNames = DocumentName::pluck("title", "id");
+
+        return view("documents.show", compact('document', 'documentNames'));
+    }
+
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\ObjectDocument $document
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(ObjectDocument $document)
+    {
+        $documentNames = DocumentName::pluck('title', 'id');
+
+        return view('documents.edit', compact('document', 'documentNames'));
     }
 }

@@ -36,7 +36,7 @@
 </div>
 <div class="row mt-3">
     <div class="col-12 custom-file">
-        <input type="file" class="custom-file-input" id="documentFile", name="documentFile">
+        <input type="file" class="custom-file-input" id="documentFile" name="documentFile">
         <label class="custom-file-label mx-3" for="documentFile">Файл отсканированного документа (изображение или PDF)</label>
     </div>
 </div>

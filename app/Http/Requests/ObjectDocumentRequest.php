@@ -31,7 +31,7 @@ class ObjectDocumentRequest extends FormRequest
             'number_mil_unit' => 'nullable',
             'date' => 'nullable',
             'comment' => 'nullable',
-            'documentFile' => 'nullable|file'
+            'documentFile' => 'nullable|file|max:5120'
         ];
     }
 
@@ -61,6 +61,7 @@ class ObjectDocumentRequest extends FormRequest
 
     public function withValidator($validator)
     {
+        dump($validator->errors());
         $validator->after(function ($validator) {
             foreach ($validator->errors()->all() as $error) {
                 flash($error)->error()->important();
