@@ -39,7 +39,6 @@ class ObjectDocumentController extends Controller
 
         if ($request->hasFile('documentFile')) {
             $pathToFile = Storage::putFile('public/objectDocuments', $request->file('documentFile'), 'public');
-
             $document->file_path = $pathToFile;
             $document->file_name = $request->file('documentFile')->getClientOriginalName();
         }
@@ -67,14 +66,43 @@ class ObjectDocumentController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($documentId)
+    {
+        $document = \App\Models\ObjectDocument::findOrFail($documentId);
+        $documentNames = DocumentName::pluck('title', 'id');
+
+        return view('documents.edit', compact('document', 'documentNames'));
+    }
+
+     /**
+     * Remove the specified resource from storage.
+     *
      * @param  \App\Models\ObjectDocument $document
      *
      * @return \Illuminate\Http\Response
      */
-    public function edit(ObjectDocument $document)
+    public function destroy($id)
     {
-        $documentNames = DocumentName::pluck('title', 'id');
+        $document = \App\Models\ObjectDocument::findOrFail($id);
+        if ($document) {
+            Storage::delete($document->file_path);
+            $document->delete();
+        }
+        
+        flash("Документ '{$document->documentName->title}' удален!")->success();
+        return redirect()->back();
+    }
 
-        return view('documents.edit', compact('document', 'documentNames'));
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function download($documentId) {
+        $document = \App\Models\ObjectDocument::findOrFail($documentId);
+
+        return Storage::download($document->file_path, $document->file_name);
     }
 }

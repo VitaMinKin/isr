@@ -26,3 +26,4 @@ Route::resources([
     'objects' => InformatizationObjectController::class
 ]);
 Route::resource('documents', ObjectDocumentController::class)->except('index');
+Route::get('documents/{id}/download', [ObjectDocumentController::class, 'download'])->name('documents.download');
