@@ -61,7 +61,6 @@ class ObjectDocumentRequest extends FormRequest
 
     public function withValidator($validator)
     {
-        dump($_FILES['documentFile']['error']);
         $validator->after(function ($validator) {
             foreach ($validator->errors()->all() as $error) {
                 flash($error)->error()->important();

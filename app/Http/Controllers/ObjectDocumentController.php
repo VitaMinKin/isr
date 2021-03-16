@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\ObjectDocumentRequest;
 use App\Models\InformatizationObject;
 use App\Models\DocumentName;
+use App\Models\ObjectDocument;
 use Illuminate\Support\Facades\Storage;
 
 class ObjectDocumentController extends Controller
@@ -49,19 +50,31 @@ class ObjectDocumentController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Update the specified resource in storage.
      *
-     * @param  \App\Models\ObjectDocument  $document
-     *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function show(ObjectDocument $document)
+    public function update(ObjectDocumentRequest $request, $documentId)
     {
-        $documentNames = DocumentName::pluck("title", "id");
+        $validated = $request->validated();
+        $document = ObjectDocument::findOrFail($documentId);
 
-        return view("documents.show", compact('document', 'documentNames'));
+        if ($request->hasFile('documentFile')) {
+            $pathToFile = Storage::putFile('public/objectDocuments', $request->file('documentFile'), 'public');
+            Storage::delete($document->file_path);
+            $document->file_path = $pathToFile;
+            $document->file_name = $request->file('documentFile')->getClientOriginalName();
+        }
+
+        $document->fill($validated);
+
+        $document->save();
+
+        flash("Информация по документу {$document->documentName->title} обновлена!")->success();
+
+        return redirect()->route('objects.show', $document->informatizationObject);
     }
-
 
     /**
      * Show the form for editing the specified resource.
@@ -70,10 +83,10 @@ class ObjectDocumentController extends Controller
      */
     public function edit($documentId)
     {
-        $document = \App\Models\ObjectDocument::findOrFail($documentId);
+        $objectDocument = \App\Models\ObjectDocument::findOrFail($documentId);
         $documentNames = DocumentName::pluck('title', 'id');
 
-        return view('documents.edit', compact('document', 'documentNames'));
+        return view('objectDocuments.edit', compact('objectDocument', 'documentNames'));
     }
 
      /**
@@ -103,6 +116,30 @@ class ObjectDocumentController extends Controller
     public function download($documentId) {
         $document = \App\Models\ObjectDocument::findOrFail($documentId);
 
+        if (!($document->file_path && Storage::exists($document->file_path)))
+        {
+            flash("Файл '{$document->file_name}' не найден на сервере!")->error();
+            return redirect()->back();
+        }
+
         return Storage::download($document->file_path, $document->file_name);
+    }
+
+    public function fileDelete($documentId)
+    {
+        $document = \App\Models\ObjectDocument::findOrFail($documentId);
+
+        if (!($document->file_path && Storage::exists($document->file_path)))
+        {
+            flash("Файл '{$document->file_name}' не найден на сервере!")->error();
+            return redirect()->back();
+        }
+
+        Storage::delete($document->file_path);
+        $document->file_path = null;
+        $document->file_name = null;
+        $document->save();
+        flash("Файл '{$document->file_name}' удален!")->success();
+        return redirect()->back();
     }
 }

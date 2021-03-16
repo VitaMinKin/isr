@@ -35,10 +35,16 @@
     </div>
 </div>
 <div class="row mt-3">
-    <div class="col-12 custom-file">
-        
-        <input type="file" class="custom-file-input" id="documentFile" name="documentFile">
-        <label class="custom-file-label mx-3" for="documentFile">Файл отсканированного документа (изображение или PDF)</label>
+    <div class="input-group col-12">
+        <div class="custom-file">
+            <input type="file" class="custom-file-input" id="documentFile" name="documentFile">
+            <label class="custom-file-label" for="documentFile">{{ $objectDocument->file_name ?? "Файл отсканированного документа (изображение или PDF)" }}</label>
+        </div>
+        @if (isset($objectDocument) && $objectDocument->file_name)
+        <div class="input-group-append">
+            <a href="{{ route('documents.fileDelete', $objectDocument) }}" data-confirm="Вы уверены?" data-method="delete" rel="nofollow" class="btn btn-outline-secondary" style="border:1px solid #ced4da;" type="button">Удалить</a>
+        </div>
+        @endif
     </div>
 </div>
 <div class="row my-1">

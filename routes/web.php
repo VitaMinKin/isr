@@ -27,3 +27,4 @@ Route::resources([
 ]);
 Route::resource('documents', ObjectDocumentController::class)->except('index');
 Route::get('documents/{id}/download', [ObjectDocumentController::class, 'download'])->name('documents.download');
+Route::delete('documents/{id}/fileDelete', [ObjectDocumentController::class, 'fileDelete'])->name('documents.fileDelete');
