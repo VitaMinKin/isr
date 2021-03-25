@@ -16,6 +16,9 @@ class CreateDocumentNamesTable extends Migration
         Schema::create('document_names', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->smallInteger("limit_1_c")->nullable();
+            $table->smallInteger("limit_2_c")->nullable();
+            $table->smallInteger("limit_3_c")->nullable();
         });
     }
 

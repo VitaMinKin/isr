@@ -16,7 +16,8 @@
         "laravel/framework": "^8.12",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.2",
-        "laravelcollective/html": "^6.2"
+        "laravelcollective/html": "^6.2",
+        "nesbot/carbon": "^2.46"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.7",

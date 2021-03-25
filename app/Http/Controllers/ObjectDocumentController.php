@@ -37,7 +37,9 @@ class ObjectDocumentController extends Controller
 
         $informatizationObject = InformatizationObject::findOrFail($request->input('informatization_object_id'));
         $document = $informatizationObject->documents()->make($validated);
-
+        
+        $document->calculateDateLimit();
+                
         if ($request->hasFile('documentFile')) {
             $pathToFile = Storage::putFile('public/objectDocuments', $request->file('documentFile'), 'public');
             $document->file_path = $pathToFile;
@@ -68,7 +70,8 @@ class ObjectDocumentController extends Controller
         }
 
         $document->fill($validated);
-
+        $document->calculateDateLimit();
+        
         $document->save();
 
         flash("Информация по документу {$document->documentName->title} обновлена!")->success();

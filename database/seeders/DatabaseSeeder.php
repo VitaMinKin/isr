@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
         $this->call(OrderSeeder::class);
         $this->call(DocumentNamesSeeder::class);
 
-        //\App\Models\Officer::factory(4)->create();
-        //\App\Models\ObjectDocument::factory(4)->create();
+        \App\Models\Officer::factory(4)->create();
+        \App\Models\ObjectDocument::factory(4)->create();
     }
 }

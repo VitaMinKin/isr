@@ -14,13 +14,22 @@ class DocumentNamesSeeder extends Seeder
      */
     public function run()
     {
-        $rawNames = \file_get_contents(__DIR__ . "/../../app/src/fixtures/documentNames.txt");
-        $documentNames = explode("\n", \trim($rawNames));
+        $rawLines = \file_get_contents(__DIR__ . "/../../app/src/fixtures/documentNames.txt");
+        $documentList = explode("\n", \trim($rawLines));
+            
+        array_map(function ($documentLine) {
+            $documentInfo = explode("-", \trim($documentLine));
+            $title = trim($documentInfo[0]);
+            $limit1C = $documentInfo[1] ?? null;
+            $limit2C = $documentInfo[2] ?? null;
+            $limit3C = $documentInfo[3] ?? null;
 
-        array_map(function ($documentName) {
             DB::table('document_names')->insert([
-                'title' => trim($documentName)
+                'title' => $title,
+                'limit_1_c' => $limit1C,
+                'limit_2_c' => $limit2C,
+                'limit_3_c' => $limit3C
             ]);
-        }, $documentNames);
+        }, $documentList);
     }
 }

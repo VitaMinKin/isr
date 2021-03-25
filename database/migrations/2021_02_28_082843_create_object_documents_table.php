@@ -24,6 +24,7 @@ class CreateObjectDocumentsTable extends Migration
             $table->string('number')->nullable();
             $table->string('number_mil_unit')->nullable();
             $table->date('date')->nullable();
+            $table->date('validity')->nullable();
             $table->string('file_name')->nullable();
             $table->string('file_path')->nullable();
             $table->text('comment')->nullable();
