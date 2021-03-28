@@ -62,7 +62,12 @@ class InformatizationObjectController extends Controller
     {
         $object = InformatizationObject::findOrFail($id);
 
-        return view('objects.show', compact('object'));
+        /*$spentDocs = $object->documents()->pluck('document_name_id')->toArray();
+        $unworkedDocuments = DocumentName::whereNotIn('id', $spentDocs)->pluck('title');*/
+
+        $documents = DocumentName::all()->pluck('title', 'id');
+
+        return view('objects.show', compact('object', 'documents'));
     }
 
     /**

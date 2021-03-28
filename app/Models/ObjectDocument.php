@@ -30,7 +30,8 @@ class ObjectDocument extends Model
         return $this->belongsTo(InformatizationObject::class);
     }
 
-    public function calculateDateLimit() {
+    public function calculateDateLimit()
+    {
         if (!$this->date) {
             return false;
         }
