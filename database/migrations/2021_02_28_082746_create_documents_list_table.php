@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDocumentNamesTable extends Migration
+class CreateDocumentsListTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateDocumentNamesTable extends Migration
      */
     public function up()
     {
-        Schema::create('document_names', function (Blueprint $table) {
+        Schema::create('documents_list', function (Blueprint $table) {
             $table->id();
             $table->string('title');
             $table->smallInteger("limit_1_c")->nullable();
@@ -29,6 +29,6 @@ class CreateDocumentNamesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('document_names');
+        Schema::dropIfExists('documents_list');
     }
 }

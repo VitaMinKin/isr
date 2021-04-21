@@ -5,7 +5,7 @@
     <div class="row mt-6 justify-content-center">
         <div class="col-9">
 
-            <h3 class="text-center">Редактирование документа <b><u>{{ $objectDocument->documentName->title }}</u></b></h3>
+            <h3 class="text-center">Редактирование документа <b><u>{{ $objectDocument->documentsList->title }}</u></b></h3>
             <h4 class="text-center">Объект информатизации: <a href="{{ route('objects.show', $objectDocument->informatizationObject) }}">{{ $objectDocument->informatizationObject->name }}</a></h4>
             <h4 class="text-center">Управление: <a href="{{ route('departments.show', $objectDocument->informatizationObject->department) }}">{{ $objectDocument->informatizationObject->department->name }}</a></h4>
             

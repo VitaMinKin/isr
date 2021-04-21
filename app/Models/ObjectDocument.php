@@ -11,7 +11,7 @@ class ObjectDocument extends Model
     use HasFactory;
 
     protected $fillable = [
-        'document_name_id',
+        'documents_list_id',
         'preliminary_accounting',
         'number_type',
         'number',
@@ -20,9 +20,9 @@ class ObjectDocument extends Model
         'comment'
     ];
 
-    public function documentName()
+    public function documentsList()
     {
-        return $this->belongsTo(DocumentName::class);
+        return $this->belongsTo(DocumentsList::class);
     }
 
     public function informatizationObject()
@@ -44,7 +44,7 @@ class ObjectDocument extends Model
 
         $objectCategory = $this->informatizationObject->category;
         $documentValidityCategory = $limitCategory[$objectCategory];
-        $limitation = $this->documentName->$documentValidityCategory;
+        $limitation = $this->documentsList->$documentValidityCategory;
 
         if (!$limitation) {
             return false;

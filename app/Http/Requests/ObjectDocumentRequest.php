@@ -24,7 +24,7 @@ class ObjectDocumentRequest extends FormRequest
     public function rules()
     {
         return [
-            'document_name_id' => 'required',
+            'documents_list_id' => 'required',
             'preliminary_accounting' => 'nullable',
             'number_type' => 'nullable',
             'number' => 'nullable',
@@ -55,7 +55,7 @@ class ObjectDocumentRequest extends FormRequest
     public function attributes()
     {
         return [
-            'document_name_id' => 'Наименование документа'
+            'document_list_id' => 'Наименование документа'
         ];
     }
 

@@ -17,8 +17,8 @@ class CreateObjectDocumentsTable extends Migration
             $table->id();
             $table->bigInteger('informatization_object_id');
             $table->foreign('informatization_object_id')->references('id')->on('informatization_objects')->onDelete('cascade')->onUpdate('cascade');
-            $table->smallInteger('document_name_id');
-            $table->foreign('document_name_id')->references('id')->on('document_names')->onDelete('cascade')->onUpdate('cascade');
+            $table->smallInteger('documents_list_id');
+            $table->foreign('documents_list_id')->references('id')->on('documents_list')->onDelete('cascade')->onUpdate('cascade');
             $table->string('preliminary_accounting')->nullable();
             $table->string('number_type')->nullable();
             $table->string('number')->nullable();

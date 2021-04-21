@@ -24,7 +24,7 @@ class ObjectDocumentFactory extends Factory
     {
         return [
             'informatization_object_id' => InformatizationObject::factory(),
-            'document_name_id' => $this->faker->numberBetween(1, 9),
+            'documents_list_id' => $this->faker->numberBetween(1, 9),
             'preliminary_accounting' => $this->faker->numerify('##/#/####'),
             'number' => $this->faker->randomNumber(4, true),
             'date' => $this->faker->date(),

@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class DocumentNamesSeeder extends Seeder
+class DocumentsListSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,7 +14,7 @@ class DocumentNamesSeeder extends Seeder
      */
     public function run()
     {
-        $rawLines = \file_get_contents(__DIR__ . "/../../app/src/fixtures/documentNames.txt");
+        $rawLines = \file_get_contents(__DIR__ . "/../../app/src/fixtures/documentsList.txt");
         $documentList = explode("\n", \trim($rawLines));
             
         array_map(function ($documentLine) {
@@ -24,7 +24,7 @@ class DocumentNamesSeeder extends Seeder
             $limit2C = $documentInfo[2] ?? null;
             $limit3C = $documentInfo[3] ?? null;
 
-            DB::table('document_names')->insert([
+            DB::table('documents_list')->insert([
                 'title' => $title,
                 'limit_1_c' => $limit1C,
                 'limit_2_c' => $limit2C,

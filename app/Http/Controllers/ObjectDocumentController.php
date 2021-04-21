@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\ObjectDocumentRequest;
 use App\Models\InformatizationObject;
-use App\Models\DocumentName;
+use App\Models\DocumentsList;
 use App\Models\ObjectDocument;
 use Illuminate\Support\Facades\Storage;
 
@@ -20,9 +20,9 @@ class ObjectDocumentController extends Controller
     {
         $informatizationObject = InformatizationObject::findOrFail($request->object);
 
-        $documentNames = DocumentName::pluck('title', 'id');
+        $documentsList = DocumentsList::pluck('title', 'id');
 
-        return view('objectDocuments.create', compact('informatizationObject', 'documentNames'));
+        return view('objectDocuments.create', compact('informatizationObject', 'documentsList'));
     }
 
     /**
@@ -74,7 +74,7 @@ class ObjectDocumentController extends Controller
         
         $document->save();
 
-        flash("Информация по документу {$document->documentName->title} обновлена!")->success();
+        flash("Информация по документу {$document->DocumentsList->title} обновлена!")->success();
 
         return redirect()->route('objects.show', $document->informatizationObject);
     }
@@ -87,9 +87,9 @@ class ObjectDocumentController extends Controller
     public function edit($documentId)
     {
         $objectDocument = \App\Models\ObjectDocument::findOrFail($documentId);
-        $documentNames = DocumentName::pluck('title', 'id');
+        $documentsList = DocumentsList::pluck('title', 'id');
 
-        return view('objectDocuments.edit', compact('objectDocument', 'documentNames'));
+        return view('objectDocuments.edit', compact('objectDocument', 'documentsList'));
     }
 
      /**
@@ -107,7 +107,7 @@ class ObjectDocumentController extends Controller
             $document->delete();
         }
         
-        flash("Документ '{$document->documentName->title}' удален!")->success();
+        flash("Документ '{$document->documentsList->title}' удален!")->success();
         return redirect()->back();
     }
 

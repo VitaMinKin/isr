@@ -6,7 +6,7 @@ use App\Models\InformatizationObject;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreInformatizationObjectRequest;
 use App\Models\Department;
-use App\Models\DocumentName;
+use App\Models\DocumentsList;
 
 class InformatizationObjectController extends Controller
 {
@@ -63,9 +63,9 @@ class InformatizationObjectController extends Controller
         $object = InformatizationObject::findOrFail($id);
 
         /*$spentDocs = $object->documents()->pluck('document_name_id')->toArray();
-        $unworkedDocuments = DocumentName::whereNotIn('id', $spentDocs)->pluck('title');*/
+        $unworkedDocuments = DocumentsList::whereNotIn('id', $spentDocs)->pluck('title');*/
 
-        $documents = DocumentName::all()->pluck('title', 'id');
+        $documents = DocumentsList::all()->pluck('title', 'id');
 
         return view('objects.show', compact('object', 'documents'));
     }

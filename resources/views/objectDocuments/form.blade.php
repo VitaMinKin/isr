@@ -1,7 +1,7 @@
 <div class="row my-1">
     <div class="col-12">
-        {{ Form::label('document_name_id', 'Наименование документа', ['class' => 'form-label']) }}
-        {{ Form::select('document_name_id', $documentNames, $objectDocument->document_name_id ?? null, ['class' => 'form-control custom-select mr-sm-2'] ) }}
+        {{ Form::label('documents_list_id', 'Наименование документа', ['class' => 'form-label']) }}
+        {{ Form::select('documents_list_id', $documentsList, $objectDocument->documents_list_id ?? null, ['class' => 'form-control custom-select mr-sm-2'] ) }}
     </div>
 </div>
 <div class="row my-1">

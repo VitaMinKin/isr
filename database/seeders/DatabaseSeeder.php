@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
         $this->call(MilitaryRanksSeeder::class);
         $this->call(OrderSeeder::class);
-        $this->call(DocumentNamesSeeder::class);
+        $this->call(DocumentsListSeeder::class);
 
         \App\Models\Officer::factory(4)->create();
         \App\Models\ObjectDocument::factory(4)->create();
