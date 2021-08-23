@@ -3,12 +3,12 @@
         <div class='container-fluid'>
             <div class="row">
                 <div class='text-left col'>
-                    created by
+                    проект разработан
                     <a href="#" target="_blank">#VMk</a>
                     <p class="text-muted my-0"> Code is my poetry! </p>
                 </div>
                 <div class='text-right col'>
-                    design by
+                    дизайн вдохновлен
                     <a href="#" target="_blank">#GIF</a>
                 </div>
             </div>
