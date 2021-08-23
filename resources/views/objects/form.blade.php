@@ -21,7 +21,7 @@
     </div>
 </div>
 <div class="form-group">
-        {{ Form::label('comment', 'Комментарий или примечание', ['class' => 'form-label']) }}
+        {{ Form::label('comment', 'Описание, комментарий или примечание', ['class' => 'form-label']) }}
         {{ Form::textarea('comment', "$object->comment", ['class' => 'form-control', 'rows' => '3']) }}
 </div>
     

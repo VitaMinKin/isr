@@ -49,7 +49,7 @@
 </div>
 <div class="row my-1">
     <div class="col-12">
-        {{ Form::label('comment', 'Комментарий, примечание или дополнительная информация', ['class' => 'form-label']) }}
+        {{ Form::label('comment', 'Описание, комментарий, примечание или любая дополнительная информация', ['class' => 'form-label']) }}
         {{ Form::textarea('comment', $objectDocument->comment ?? null, ['class' => 'form-control mr-sm-2', 'rows' => '3']) }}
     </div>
 </div>
