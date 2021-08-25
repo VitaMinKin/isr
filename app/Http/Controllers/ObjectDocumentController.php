@@ -8,6 +8,7 @@ use App\Models\InformatizationObject;
 use App\Models\DocumentsList;
 use App\Models\ObjectDocument;
 use Illuminate\Support\Facades\Storage;
+use Carbon\Carbon;
 
 class ObjectDocumentController extends Controller
 {
@@ -143,6 +144,17 @@ class ObjectDocumentController extends Controller
         $document->file_name = null;
         $document->save();
         flash("Файл '{$document->file_name}' удален!")->success();
+        return redirect()->back();
+    }
+
+    public function invalidate($documentId)
+    {
+        $document = \App\Models\ObjectDocument::findOrFail($documentId);
+
+        $document->validity = Carbon::now();
+
+        $document->save();
+
         return redirect()->back();
     }
 }

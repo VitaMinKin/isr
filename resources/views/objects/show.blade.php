@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container-xl container mt-5">
-    <h2 class="text-center mb-4 "> {{ $object->name }}, {{ $object->department->name }} </h2>
+    <h2 class="text-center mb-4 "> Объект информатизации - <span class="mp-0 text-info text-uppercase"> {{ $object->name }}, {{ $object->department->short_name }} </span> </h2>
     <div class="card text-center">
         <div class="card-header">
             <div class="row">
@@ -86,7 +86,13 @@
                                             @foreach ($documents as $document)
                                                 
                                                 @php
-                                                    $count = $object->documents()->where('documents_list_id', $loop->iteration)->count();
+                                                    $count = $object->documents()
+                                                        ->where('documents_list_id', $loop->iteration)
+                                                        ->where(function ($query) {
+                                                            $query->whereDate('validity', '>', Carbon\Carbon::today())
+                                                                    ->orWhere('validity', null);
+                                                        })
+                                                        ->count();
                                                 @endphp
                                                 <a class="list-group-item 
                                                         list-group-item-action
@@ -100,7 +106,7 @@
                                                     role="tab" aria-controls="docs"
                                                 > {{ $document }}
                                                     @if ($count > 0)
-                                                        <span class="badge badge-secondary" data-toggle="tooltip" data-placement="top" title="Количество документов за всё время">{{ $count }}</span>
+                                                        <span class="badge badge-secondary" data-toggle="tooltip" data-placement="top" title="Количество действующих документов">{{ $count }}</span>
                                                     @endif
                                                 </a>
                                             @endforeach
@@ -164,9 +170,12 @@
                                                                     <div class="col border-right d-flex align-self-center justify-content-center">
                                                                         {{ $document->date ?? "Документ не готов (проект)"}}
                                                                     </div>
-                                                                    <div class="col border-right d-flex align-self-center justify-content-center">
+                                                                    <div class="col border-right d-flex flex-column justify-content-center">
                                                                     <!-- Срок действия -->
                                                                         {{ $document->validity ?? "Бессрочно" }}
+                                                                        @if (isset($document->validity) && $document->validity < Carbon\Carbon::today())
+                                                                            <p class="mp0 text-danger"> Срок действия окончен </p>
+                                                                        @endif
                                                                     </div>
                                                                     <div class="col d-flex align-self-center justify-content-center">
                                                                         @if ($document->file_name)
@@ -177,7 +186,7 @@
                                                                     </div>
                                                                 
                                                                 </div>
-                                                                <div class="row">
+                                                                <div class="row my-1">
                                                                     <div class="col text-italic">
                                                                         {{ $document->comment }}
                                                                     </div>
@@ -188,12 +197,21 @@
                                                                             Отредактирован {{ $document->updated_at }}
                                                                         </div>
                                                                         <div>
-                                                                            <a href="{{ route('documents.destroy', $document) }}" data-confirm="Вы уверены?" data-method="delete" rel="nofollow" data-toggle="tooltip" data-placement="bottom" title="Удалить" class="mx-2">
+                                                                            <a href="{{ route('documents.destroy', $document) }}" data-confirm="Удаляйте записи о документах только если они ОИШБОЧНЫ! Документы с истекшим сроком рекомендуется сохранять для статистики ведения ОИ. Вы уверены что хотите удалить данную запись?" data-method="delete" rel="nofollow" data-toggle="tooltip" data-placement="bottom" title="Удалить" class="mx-2">
                                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
                                                                                     <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
                                                                                     <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
                                                                                 </svg>
                                                                             </a>
+
+                                                                            @if (!isset($document->validity) or $document->validity > Carbon\Carbon::today())
+                                                                            <a href="{{ route('documents.invalidate', $document) }}" data-confirm="Помечаем документ как утративший силу с сегодняшнего дня?" rel="nofollow" data-toggle="tooltip" data-placement="bottom" title="Отметить недействительным" class="mx-2">
+                                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-excel" viewBox="0 0 16 16">
+                                                                                    <path d="M5.884 6.68a.5.5 0 1 0-.768.64L7.349 10l-2.233 2.68a.5.5 0 0 0 .768.64L8 10.781l2.116 2.54a.5.5 0 0 0 .768-.641L8.651 10l2.233-2.68a.5.5 0 0 0-.768-.64L8 9.219l-2.116-2.54z"/>
+                                                                                    <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
+                                                                                </svg>
+                                                                            </a>
+                                                                            @endif
                                                                         
                                                                             <a href="{{ route('documents.edit', $document) }}" data-toggle="tooltip" data-placement="bottom" title="Редактировать" class="mx-2">
                                                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">

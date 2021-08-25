@@ -6,6 +6,7 @@ use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\OfficerController;
 use App\Http\Controllers\InformatizationObjectController;
 use App\Http\Controllers\ObjectDocumentController;
+use App\Models\ObjectDocument;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,3 +29,4 @@ Route::resources([
 Route::resource('documents', ObjectDocumentController::class)->except('index');
 Route::get('documents/{id}/download', [ObjectDocumentController::class, 'download'])->name('documents.download');
 Route::delete('documents/{id}/fileDelete', [ObjectDocumentController::class, 'fileDelete'])->name('documents.fileDelete');
+Route::get('documents/{id}/invalidate', [ObjectDocumentController::class, 'invalidate'])->name('documents.invalidate');

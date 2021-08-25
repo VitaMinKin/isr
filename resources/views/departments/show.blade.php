@@ -9,7 +9,7 @@
                     <div class="col-xl-12 col-sm-12 col-12">    
                         <ul class="nav nav-tabs card-header-tabs" id="departmentsTab" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="true">Профиль управления</a>
+                                <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="true">Информация об управлении</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" id="officer-obi-tab" data-toggle="tab" href="#oobi" role="tab" aria-controls="oobi" aria-selected="false">Офицеры по ОБИ</a>
